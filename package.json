@@ -1,0 +1,10 @@
+{
+	"name" : "RestingRubik",
+	"version" : "0.0.1",
+	"description" : "Restful API for Rubik's cube type puzzles algorithms",
+	"main" : "server.js",
+	"dependencies" : {
+		"express" : "latest",
+		"mongoose" : "latest"
+	}
+}
