@@ -7,7 +7,7 @@ var cube = new Schema({
 	layers: String,
 	kind: {
 		type: String,
-		enum : ['Regular', 'Cuboid', 'Modification'];
+		enum : ['Regular', 'Cuboid', 'Modification']
 	}
 
 });

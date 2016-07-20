@@ -17,5 +17,7 @@ app.get('/', function(req,res){
 	res.send('Hola Mundo!');
 });
 
+require('./routes')(app);
+
 app.listen(5000);
 console.log('Servidor Express escuchando el puerto 5000.');
