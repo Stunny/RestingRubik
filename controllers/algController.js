@@ -4,8 +4,14 @@ module.exports.getAllAlgtms = function(req, res){
   var Algtm = require('../models/algorithm');
 
   Algtm.find(function(err, algs){
-    if(!err) res.send(algs);
-    else console.log('Error al obtener: '+err);
+    if(!err){
+      res.send(algs);
+      res.status(200);
+    }else{
+      console.log('Error al obtener: '+err);
+      res.status(204);
+      res.send('{"status":"204","msg":"no_content"}');
+    }
   });
 };
 
@@ -14,8 +20,14 @@ module.exports.getAlgByID = function(req, res){
   var Algtm = require('../models/algorithm');
 
   Algtm.findById(req.params.id, function(err, alg){
-    if(!err) res.send(alg);
-    else console.log('Error al obtener: '+err);
+    if(!err){
+      res.send(alg);
+      res.status(200);
+    }else{
+      console.log('Error al obtener: '+err);
+      res.status(404);
+      res.send('{"status":"404","msg":"not_found"}');
+    }
   });
 };
 
@@ -34,8 +46,15 @@ module.exports.addAlgtm = function(req, res){
   });
 
   alg.save(function(err){
-    if(!err) console.log('Nuevo algoritmo guardado.');
-    else console.log('Erro al guardar: '+err);
+    if(!err){
+      console.log('Nuevo algoritmo guardado.');
+      res.send(alg);
+      res.status(200);
+    }else{
+      console.log('Erro al guardar: '+err);
+      res.send('{"status":"400","msg":"bad_request"}');
+      res.status(400);
+    }
   });
   res.send(alg);
 };
@@ -47,15 +66,21 @@ module.exports.updateAlgtm = function(req, res){
   console.log(req.body);
 
   Algtm.findById(req.params.id, function(err, alg){
-    alg.nombre = req.body.nombre;
+    alg.nombre       = req.body.nombre;
     alg.moves_number = req.body.moves_number;
-    alg.moves = req.body.moves;
-    alg.applies_to = req.body.applies_to;
-    alg.kind = req.body.kind;
+    alg.moves        = req.body.moves;
+    alg.applies_to   = req.body.applies_to;
+    alg.kind         = req.body.kind;
 
     alg.save(function(err){
-      if(!err) console.log('Algoritmo actualizado.');
-      else console.log('Error al actualizar: '+err);
+      if(!err){
+        console.log('Algoritmo actualizado.');
+        res.status(200);
+        res.send(alg);
+      }else{
+        console.log('Error al actualizar: '+err);
+        res.send('{"status":"400","msg":"bad_request"}');
+      }
     });
   });
 };
@@ -65,8 +90,15 @@ module.exports.deleteAlgtm = function(req, res){
   var Algtm = require('../models/algorithm');
   Algtm.findById(req.params.id, function(err, alg){
     alg.remove(function(err){
-      if(!err) console.log('Algoritmo eliminado');
-      else console.log('Error al eliminar: '+err);
+      if(!err){
+        console.log('Algoritmo eliminado');
+        res.status(200);
+        res.send('{"status":"200","msg":"OK"}');
+      }else{
+        console.log('Error al eliminar: '+err);
+        res.status(404);
+        res.send('{"status":"404","msg":"not_found"}');
+      }
     });
   });
 }
