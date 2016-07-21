@@ -13,12 +13,12 @@ mongoose.connect('mongodb://localhost/cube', function(err,res){
 	else console.log('Conexion a la base de datos realizada');
 });
 
+app.listen(5000);
+console.log('Servidor Express escuchando el puerto 5000.');
+
 
 app.get('/', function(req,res){
 	res.send('RESTingRubik API');
 });
 
 require('./routes')(app);
-
-app.listen(5000);
-console.log('Servidor Express escuchando el puerto 5000.');

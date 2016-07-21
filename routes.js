@@ -16,4 +16,5 @@ module.exports = function(app){
 	app.put('/alg/:id', algController.updateAlgtm);
 	app.delete('/alg/:id', algController.deleteAlgtm);
 
+	//--Metodos de la ruta '/guide'
 }
