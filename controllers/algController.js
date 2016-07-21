@@ -42,7 +42,7 @@ module.exports.addAlgtm = function(req, res){
     moves_number : req.body.moves_number,
     moves        : req.body.moves,
     applies_to   : req.body.applies_to,
-    kind :       : req.body.kind
+    kind         : req.body.kind
   });
 
   alg.save(function(err){
