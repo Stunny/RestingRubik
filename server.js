@@ -17,8 +17,8 @@ app.listen(5000);
 console.log('Servidor Express escuchando el puerto 5000.');
 
 
-app.get('/', function(req,res){
+/*app.get('/', function(req,res){
 	res.send('RESTingRubik API');
-});
+});*/
 
 require('./routes')(app);
