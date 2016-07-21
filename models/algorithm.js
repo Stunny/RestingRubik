@@ -3,13 +3,13 @@ var mongoose = require('mongoose'),
 
 var algorithm = new Schema({
 
-  nombre: String,
+  nombre      : String,
   moves_number: Number,
-  moves: String,
-  applies_to: String,
-  kind:{
-    type: String,
-    enum: ['Permutation', 'Orientation', 'Conmutator']
+  moves       : String,
+  applies_to  : String,
+  kind        :{
+    type      : String,
+    enum      : ['Permutation', 'Orientation', 'Conmutator']
   }
 
 });

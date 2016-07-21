@@ -1,5 +1,4 @@
 //--GET ALL ALGORITHMS
-
 module.exports.getAllAlgtms = function(req, res){
   var Algtm = require('../models/algorithm');
 
