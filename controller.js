@@ -1,6 +1,6 @@
 
 	// GET---TODOS LOS CUBOS
-	module.exports.getAllCubes = function(req, res){	
+	module.exports.getAllCubes = function(req, res){
 		var Cube = require('./cube');
 		Cube.find(function(err, cubes){
 			if(!err) res.send(cubes);
@@ -16,17 +16,17 @@
 			else console.log('Error: '+err);
 		});
 	};
-	
+
 	//POST---AÑADIR CUBO
-	module.exports.addCubo = function(req,res){
+	module.exports.addCubo = function(req, res){
 		var Cube = require('./cube');
 		console.log('POST');
 		console.log(req.body);
 
 		var cubo = new Cube({
-			name : req.body.name,
+			name : req.body.nombre,
 			brand : req.body.brand,
-			layers : req.body.layers,
+			layers : req.body.capas,
 			kind : req.body.kind
 		});
 
@@ -42,11 +42,11 @@
 		var Cube = require('./cube');
 		console.log('PUT');
 		console.log(req.body);
-		
+
 		Cube.findById(req.params.id, function(err, cube){
-			cube.name = req.body.name;
+			cube.nombre = req.body.nombre;
 			cube.brand = req.body.brand;
-			cube.layers = req.body.layers;
+			cube.layer = req.body.capas;
 			cube.kind = req.body.kind;
 
 			cube.save(function(err){
@@ -55,7 +55,7 @@
 			});
 		});
 	};
-	
+
 	//DELETE---ELIMINAR REGISTRO
 	module.exports.deleteCube = function(req,res){
 		var Cube = require('./cube');

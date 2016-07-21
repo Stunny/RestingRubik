@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost/cube', function(err,res){
 
 
 app.get('/', function(req,res){
-	res.send('Hola Mundo!');
+	res.send('RESTingRubik API');
 });
 
 require('./routes')(app);

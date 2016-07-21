@@ -2,9 +2,9 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 
 var cube = new Schema({
-	name : String,
+	nombre : String,
 	brand: String,
-	layers: String,
+	capas: String,
 	kind: {
 		type: String,
 		enum : ['Regular', 'Cuboid', 'Modification']
