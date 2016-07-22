@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var errorHandler = require('errorhandler');
 var path = require('path');
+var port = require('./constants').APP_PORT;
 
 //--Enviroment configuration
 app.set('views', './view');
@@ -39,5 +40,5 @@ if('development' == app.get('env')){
 }
 
 //---Server start
-app.listen(5000);
+app.listen(port);
 console.log('Servidor Express escuchando el puerto 5000.');
