@@ -3,8 +3,12 @@
 	"version" : "0.0.1",
 	"description" : "Restful API for Rubik's cube type puzzles algorithms",
 	"main" : "server.js",
+	"private": true,
 	"dependencies" : {
 		"express" : "latest",
-		"mongoose" : "latest"
+		"mongoose" : "latest",
+		"body-parser":"^1.15.2",
+		"method-override":"^2.3.6",
+		"errorhandler":"^1.4.3"
 	}
 }

@@ -55,7 +55,7 @@ module.exports.addAlgtm = function(req, res){
       res.status(400);
     }
   });
-  res.send(alg);
+  //res.send(alg);
 };
 
 //PUT---UPDATE ALG
@@ -78,7 +78,7 @@ module.exports.updateAlgtm = function(req, res){
         res.send(alg);
       }else{
         console.log('Error al actualizar: '+err);
-        res.send('{"status":"400","msg":"bad_request"}');
+        res.status(400).send('{"status":"400","msg":"bad_request"}');
       }
     });
   });
