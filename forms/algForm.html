@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>RestingRubik - Alg Form</title>
+  </head>
+  <body>
+    <h1>Algorithm Form</h1>
+    <form enctype="application/json" method="post" action="localhost:5000/api/alg">
+      Nombre: <input type="text" name="nombre">
+      #moves: <input type="number" name="moves_number">
+      Moves:  <input type="text" name="moves">
+      Applies:<input type="text" name="applies_to">
+      Kind: <select name="kind">
+              <option selected>Permutation</option>
+              <option>Orientation</option>
+              <option>Conmutator</option>
+            </select>
+      <input type="submit" value="POST">
+    </form>
+  </body>
+</html>
