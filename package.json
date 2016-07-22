@@ -10,6 +10,7 @@
 		"body-parser":"^1.15.2",
 		"method-override":"^2.3.6",
 		"errorhandler":"^1.4.3",
-		"path":"^0.12.7"
+		"path":"^0.12.7",
+		"jade":"^1.11.0"
 	}
 }

@@ -1,32 +1,32 @@
 //---Enviara la pagina de formulari addient a la ruta introduida
 module.exports.indice = function(req, res){
-  var path = require('path');
+  var server = require('../constants').SERVER_ADDRESS;
   try{
-    res.sendFile(path.join(__dirname,'../view/index.html'));
+    res.render('index', {serveraddress : server});
   }catch(err){
     res.status(500);
   }
 };
 module.exports.cubeForm = function(req, res){
-  var path = require('path');
+  var server = require('../constants').SERVER_ADDRESS;
   try{
-    res.sendFile(path.join(__dirname,'../view/forms/cubeForm.html'));
+    res.render('cubeForm',{serveraddress : server});
   }catch(err){
     res.status(500);
   }
 };
 module.exports.algForm = function(req, res){
-  var path = require('path');
+  var server = require('../constants').SERVER_ADDRESS;
   try{
-    res.sendFile(path.join(__dirname,'../view/forms/algForm.html'));
+    res.render('algForm',{serveraddress : server});
   }catch(err){
     res.status(500);
   }
 };
 module.exports.guideForm = function(req, res){
-  var path = require('path');
+  var server = require('../constants').SERVER_ADDRESS;
   try{
-    res.sendFile(path.join(__dirname,'../view/forms/guideForm.html'));
+    res.render('guideForm',{serveraddress : server});
   }catch(err){
     res.status(500);
   }

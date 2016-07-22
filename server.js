@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 
 //--Middleware
+var jade = require('jade'); //--->Gestor de plantillas HTML
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
@@ -9,7 +10,8 @@ var errorHandler = require('errorhandler');
 var path = require('path');
 
 //--Enviroment configuration
-
+app.set('views', './view');
+app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride());
