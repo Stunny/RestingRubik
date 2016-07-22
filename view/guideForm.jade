@@ -2,14 +2,10 @@ doctype html
 html
   head
     meta(charset='utf-8')
-    |     
     title RestingRubik - Guide Form
-  |   
   body
     a(href=serveraddress) Index
-    |     
     h1 Guide Form
-    |     
     form(enctype='application/json', method='post', action=serveraddress+'api/guide')
       | Cube:   
       input(type='text', name='cube')
@@ -22,7 +18,5 @@ html
       |       Format: 
       select(name='format')
         option(selected='') Video
-        |                 
         option Blog
-      |       
       input(type='submit', value='POST')

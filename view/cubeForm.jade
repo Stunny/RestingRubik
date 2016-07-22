@@ -1,14 +1,10 @@
 doctype html(lang='en')
 head
-    meta(charset='utf-8')
-    |     
-    title RestingRubik - Cube Form
-  |   
+    meta(charset='utf-8')   
+    title RestingRubik - Cube Form  
   body
-    a(href=serveraddress) Index
-    |     
-    h1 Cube Form
-    |     
+    a(href=serveraddress) Index    
+    h1 Cube Form   
     form(enctype='application/json', method='post', action=serveraddress+'api/cube')
       | Nombre: 
       input(type='text', name='nombre')
@@ -18,10 +14,7 @@ head
       input(type='text', name='capas')
       |       Kind: 
       select(name='kind')
-        option(selected='') Regular
-        |               
-        option Cuboid
-        |               
-        option Modification
-      |       
+        option(selected='') Regular             
+        option Cuboid             
+        option Modification    
       input(type='submit', value='POST')

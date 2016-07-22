@@ -2,14 +2,10 @@ doctype html
 html
   head
     meta(charset='utf-8')
-    |
     title RestingRubik - Alg Form
-  |
   body
     a(href=serveraddress) Index
-    |
     h1 Algorithm Form
-    |
     form(enctype='application/json', method='post', action=serveraddress+'api/alg')
       | Nombre:
       input(type='text', name='nombre')
@@ -22,9 +18,6 @@ html
       |       Kind:
       select(name='kind')
         option(selected='') Permutation
-        |
         option Orientation
-        |
         option Conmutator
-      |
       input(type='submit', value='POST')
