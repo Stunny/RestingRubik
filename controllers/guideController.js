@@ -1,5 +1,5 @@
 //--GET ALL GUIDES
-module.exports.getAllGuides = function(){
+module.exports.getAllGuides = function(req, res){
   var Guide = require('../models/guide');
   try{
     Guide.find(function(err, guides){
