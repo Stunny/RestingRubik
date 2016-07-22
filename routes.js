@@ -1,7 +1,7 @@
 module.exports = function(app){
 	var cubeController = require('./controllers/cubeController');
 	var algController = require('./controllers/algController');
-	var guideController = require('./contrllers/guideController');
+	var guideController = require('./controllers/guideController');
 
 	//--Metodos de la ruta '/cube'
 	app.get('/api/cube', cubeController.getAllCubes);

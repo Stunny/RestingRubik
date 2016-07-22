@@ -39,7 +39,7 @@ module.exports.getGuideById = function(req, res){
 };
 
 //---POST
-moule.exports.addGuide = function(req, res){
+module.exports.addGuide = function(req, res){
   var Guide = require('../models/guide');
   console.log('POST');
   try{
@@ -47,10 +47,10 @@ moule.exports.addGuide = function(req, res){
 
     var guide = new Guide({
       cube    :req.body.cube,
-      author: :req.body.author,
-      url:    :req.body.url,
-      parts:  :req.body.parts,
-      format: :req.body.format
+      author  :req.body.author,
+      url     :req.body.url,
+      parts   :req.body.parts,
+      format  :req.body.format
     });
     guide.save(function(err){
       if(!err){

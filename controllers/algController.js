@@ -12,7 +12,7 @@ module.exports.getAllAlgtms = function(req, res){
         res.send('{"status":"204","msg":"no_content"}');
       }
     });
-  catch(err){
+  }catch(err){
     res.status(500).send('{"status":"500","msg":"internal_server_error"}');
   }
 };
@@ -31,7 +31,7 @@ module.exports.getAlgByID = function(req, res){
         res.send('{"status":"404","msg":"not_found"}');
       }
     });
-  catch(err){
+  }catch(err){
     res.status(500).send('{"status":"500","msg":"internal_server_error"}');
   }
 };
