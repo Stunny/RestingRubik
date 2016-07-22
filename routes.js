@@ -1,7 +1,7 @@
 module.exports = function(app){
 
 	//---FORMULARIS---//
-	var formsController = require('./view/formsController');
+	var formsController = require('./controllers/formsController');
 
 		app.get('/', formsController.indice);
 		app.get('/moarcubes', formsController.cubeForm);
