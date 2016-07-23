@@ -16,7 +16,9 @@ head
         option Modification    
       input(type='submit', value='POST')
     br
-    p(id='result')
+    p(id='result_status')
+    br
+    pre(id='result_body' style='font-family: monospace;')
     script.
         $('#addcube').submit(function(event){
           
@@ -40,9 +42,11 @@ head
             kind   : tipo
           });
           
-          send.done(function(data){
-            var res = $(data).find('#content');
-            $('#result').empty().append(res);
+          send.done(function(result){
+            var res = result.body;
+            var status = result.status;
+            $('#result_status').text(status);
+            $('#result_body').text(res);
           });
           
         });
