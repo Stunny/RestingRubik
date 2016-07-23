@@ -27,22 +27,19 @@ head
           
           //Recojo los valores introducidos en el formulario
           var $form = $(this),
-              nom = $form.find('input[name="nombre"]').val(),
-              marca = $form.find('input[name="brand"]').val(),
-              layers = $form.find('input[name="capas"]').val(),
-              tipo = $form.find('input[name="kind"]').val(),
+              postData = {
+                nombre: $form.find('input[name="nombre"]').val(),
+                brand: $form.find('input[name="brand"]').val(),
+                capas: $form.find('input[name="capas"]').val(),
+                kind: $form.find('input[name="kind"]').val()
+              },
               
               url = $form.attr('action');
           
           $.ajax({
             url: url,
             type: 'POST',
-            data: {
-              nombre : nom,
-              brand  : marca,
-              capas  : layers,
-              kind   : tipo
-            },
+            data: postData,
             contentType: "application/json",
             success: function(cube, textStatus, jqxhr){
               console.log(cube);
