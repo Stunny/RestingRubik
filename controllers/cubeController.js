@@ -33,7 +33,7 @@
 				}
 			});
 		}catch(err){
-			res.send('{"status":"500","msg":"internal_server_error"}');
+			res.status(500).send('{"status":"500","msg":"internal_server_error"}');
 		}
 	};
 
@@ -63,7 +63,7 @@
 				}
 			});
 		}catch(err){
-			res.send('{"status":"500","msg":"internal_server_error"}');
+			res.status(500).send('{"status":"500","msg":"internal_server_error"}');
 		}
 	};
 

@@ -16,7 +16,7 @@ head
         option Modification    
       input(type='submit', value='POST')
     br
-    p(id='result_status')
+    p(id='result_status' style='color:blue;')
     br
     pre(id='result_body' style='font-family: monospace;')
     script.
@@ -40,13 +40,16 @@ head
             brand  : marca,
             capas  : layers,
             kind   : tipo
+          }, "json"); //Set the expected reponse type to JSON
+          
+          send.done(function(cube, textStatus){
+            $('#result_status').text(textStatus);
+            $('#result_body').text(cube);
           });
           
-          send.done(function(result){
-            var res = result.body;
-            var status = result.status;
-            $('#result_status').text(status);
-            $('#result_body').text(res);
+          // handle errors
+          send.fail(function(jqxhr, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown, errorThrown.msg)
           });
-          
+        
         });
