@@ -14,7 +14,8 @@
 				}
 			});
 		}catch(err){
-			res.status(500).send('{"status":"500","msg":"internal_server_error"}');
+			res.status(500);
+			res.send('{"status":"500","msg":"internal_server_error"}');
 		}
 	};
 
@@ -33,7 +34,8 @@
 				}
 			});
 		}catch(err){
-			res.status(500).send('{"status":"500","msg":"internal_server_error"}');
+			res.status(500);
+			res.send('{"status":"500","msg":"internal_server_error"}');
 		}
 	};
 
@@ -54,7 +56,8 @@
 			cubo.save(function(err){
 				if(!err){
 					console.log('Nuevo cubo guardado.');
-					res.send(cubo);
+					res.setHeader('content-type', 'application/json');
+					res.send(JSON.stringify(cubo));
 					res.status(200);
 				}else{
 					console.log('Error al guardar: '+err);
@@ -63,7 +66,8 @@
 				}
 			});
 		}catch(err){
-			res.status(500).send('{"status":"500","msg":"internal_server_error"}');
+			res.status(500);
+			res.send('{"status":"500","msg":"internal_server_error"}');
 		}
 	};
 
@@ -93,7 +97,8 @@
 				});
 			});
 		}catch(err){
-			res.status(404).send('{"status":"404","msg":"not_found"}');
+			res.status(404);
+			res.send('{"status":"404","msg":"not_found"}');
 		}
 	};
 
@@ -115,6 +120,7 @@
 				});
 			});
 		}catch(err){
-			res.status(404).send('{"status":"404","msg":"not_found"}');
+			res.status(404);
+			res.send('{"status":"404","msg":"not_found"}');
 		}
 	};

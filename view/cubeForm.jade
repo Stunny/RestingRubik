@@ -40,12 +40,12 @@ head
             brand  : marca,
             capas  : layers,
             kind   : tipo
-          }/*, "json"*/); //Set the expected reponse type to JSON
+          }, "application/json"); //Set the expected reponse type to JSON
           
           send.done(function(cube, textStatus){
-            $('#result_status').text(textStatus);
+            //$('#result_status').text(textStatus);
             //$('#result_body').text(cube);
-            console.log(JSON.parse(cube));
+            console.log(cube);
           });
           
           // handle errors
