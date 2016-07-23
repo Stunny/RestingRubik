@@ -42,7 +42,7 @@ head
             data: JSON.stringify(postData),
             contentType: "application/json",
             done: function(cube, textStatus, jqxhr){
-              console.log(cube);
+              console.log(JSON.parse(cube));
             },
             fail: function(jqxhr, textStatus, errorThrown){
               console.log(errorThrown);
