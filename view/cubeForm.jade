@@ -27,20 +27,35 @@ head
           
           //Recojo los valores introducidos en el formulario
           var $form = $(this),
-              nom = $form.find('input[name="nombre"]').val(),
-              marca = $form.find('input[name="brand"]').val(),
-              layers = $form.find('input[name="capas"]').val(),
-              tipo = $form.find('input[name="kind"]').val(),
+              postData = {
+                nombre: $form.find('input[name="nombre"]').val(),
+                brand: $form.find('input[name="brand"]').val(),
+                capas: $form.find('input[name="capas"]').val(),
+                kind: $form.find('input[name="kind"]').val()
+              },
               
               url = $form.attr('action');
           
-          //Envio los valores a la api
+          $.ajax({
+            url: url,
+            type: 'post',
+            data: JSON.stringify(postData),
+            contentType: "application/json",
+            done: function(cube, textStatus, jqxhr){
+              console.log(cube);
+            },
+            fail: function(jqxhr, textStatus, errorThrown){
+              console.log(errorThrown);
+            }
+          });
+          
+          /*
           var send = $.post(url, {
             nombre : nom,
             brand  : marca,
             capas  : layers,
             kind   : tipo
-          }/*, "json"*/); //Set the expected reponse type to JSON
+          }); 
           
           send.done(function(cube, textStatus){
             $('#result_status').text(textStatus);
@@ -48,9 +63,8 @@ head
             console.log(JSON.parse(cube));
           });
           
-          // handle errors
           send.fail(function(jqxhr, textStatus, errorThrown) {
             console.log(textStatus, errorThrown, errorThrown.msg)
           });
-        
+        */
         });
