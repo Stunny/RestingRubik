@@ -54,7 +54,7 @@
 			cubo.save(function(err){
 				if(!err){
 					console.log('Nuevo cubo guardado.');
-					JSON.stringify(res.send(cubo));
+					res.send(JSON.stringify(cubo));
 					res.status(200);
 				}else{
 					console.log('Error al guardar: '+err);
