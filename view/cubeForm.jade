@@ -38,13 +38,13 @@ head
           
           $.ajax({
             url: url,
-            type: 'POST',
+            type: 'post',
             data: postData,
             contentType: "application/json",
-            success: function(cube, textStatus, jqxhr){
+            done: function(cube, textStatus, jqxhr){
               console.log(cube);
             },
-            error: function(jqxhr, textStatus, errorThrown){
+            fail: function(jqxhr, textStatus, errorThrown){
               console.log(errorThrown);
             }
           });
