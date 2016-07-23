@@ -42,7 +42,7 @@ head
           
           send.done(function(cube, textStatus){
             console.log(cube);
-            $('#result_body').text(cube);
+            $('#result_body').text(JSON.stringify(cube));
           });
           
           // handle errors
