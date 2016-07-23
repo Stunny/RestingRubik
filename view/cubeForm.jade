@@ -16,8 +16,6 @@ head
         option Modification    
       input(type='submit', value='POST')
     br
-    p(id='result_status' style='color:blue;')
-    br
     pre(id='result_body' style='font-family: monospace;')
     script.
         $('#addcube').submit(function(event){
@@ -43,9 +41,8 @@ head
           }, "application/json"); //Set the expected reponse type to JSON
           
           send.done(function(cube, textStatus){
-            //$('#result_status').text(textStatus);
-            //$('#result_body').text(cube);
             console.log(cube);
+            $('#result_body').text(cube);
           });
           
           // handle errors
