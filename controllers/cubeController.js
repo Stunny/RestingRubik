@@ -58,7 +58,7 @@
 					res.status(200);
 				}else{
 					console.log('Error al guardar: '+err);
-					res.send('{"status":"400","msg":"bad_request"}');
+					res.setHeader('content-type', 'application/json').send('{"status":"400","msg":"bad_request"}');
 					res.status(400);
 				}
 			});
