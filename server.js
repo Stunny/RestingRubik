@@ -30,7 +30,7 @@ app.post('/prueba', function(req, res){
 	res.status(200).send(req.body);
 });
 
-//---Enrutament de la API
+//---Enrutamiento de la API
 require('./routes')(app);
 
 //---Error handling
@@ -41,4 +41,4 @@ if('development' == app.get('env')){
 
 //---Server start
 app.listen(port);
-console.log('Servidor Express escuchando el puerto 5000.');
+console.log('Servidor Express escuchando el puerto: '+port);

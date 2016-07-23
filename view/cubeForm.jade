@@ -1,20 +1,48 @@
 doctype html(lang='en')
 head
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js').
     meta(charset='utf-8')   
     title RestingRubik - Cube Form  
   body
     a(href=serveraddress) Index    
     h1 Cube Form   
-    form(enctype='application/json', method='post', action=serveraddress+'api/cube')
-      | Nombre: 
-      input(type='text', name='nombre')
-      |       Brand: 
-      input(type='text', name='brand')
-      |       Capas: 
-      input(type='text', name='capas')
-      |       Kind: 
+    form(id='addcube'enctype='application/json', method='post', action=serveraddress+'api/cube')
+      input(type='text', name='nombre', placeholder='Nombre')
+      input(type='text', name='brand', placeholder='Marca')
+      input(type='text', name='capas', placeholder='Capas')
       select(name='kind')
-        option(selected='') Regular             
+        option(selected) Regular             
         option Cuboid             
         option Modification    
       input(type='submit', value='POST')
+    br
+    code(id='result')
+    script.
+        $('#addcube').submit(function(event){
+          
+          //Evito que el boton de submit mueva a otra pagina.
+          event.preventDefault(); 
+          
+          //Recojo los valores introducidos en el formulario
+          var $form = $(this),
+              nom = $form.find('input[name="nombre"]').val(),
+              marca = $form.find('input[name="brand"]').val(),
+              layers = $form.find('input[name="capas"]').val(),
+              tipo = $form.find('input[name="kind"]').val(),
+              
+              url = $form.attr('action');
+          
+          //Envio los valores a la api
+          var send = $.post(url, {
+            nombre : nom,
+            brand  : marca,
+            capas  : layers,
+            kind   : tipo
+          });
+          
+          send.done(function(data){
+            var res = $(data).find('#content');
+            $('#result').empty().append(res);
+          });
+          
+        });
