@@ -55,7 +55,7 @@ html(lang='es')
           console.log(textStatus, errorThrown, errorThrown.msg);
         });
         
-        $('pre code').each(function(i, block){
+        $('code').each(function(i, block){
           hljs.highlightBlock(block);
         });
       });
