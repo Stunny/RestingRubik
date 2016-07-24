@@ -34,7 +34,7 @@ html(lang='es')
             partes   = $form.find('input[name="parts"]').val(),
             formato  = $form.find('input[name="format"]').val(),
             
-            postLink = $format.attr('action');
+            postLink = $form.attr('action');
             
         var send = $.post(postLink,{
           cube     :cubo,
