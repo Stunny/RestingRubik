@@ -49,11 +49,10 @@ html(lang='es')
           console.log(alg);
           console.log(textStatus);
           $('#result_body').text(JSON.stringify(alg, null, "\t"));
+          hljs.highlightBlock($('#result_body')[0]);
         });
         
         send.fail(function(jqxhr, textStatus, errorThrown){
           console.log(textStatus, errorThrown, errorThrown.msg);
         });
-        
-        hljs.highlightBlock($('code')[0]);
       });
