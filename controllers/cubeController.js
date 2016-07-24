@@ -87,8 +87,9 @@
 				cube.save(function(err){
 					if(!err){
 						console.log('Cubo actualizado.');
+						res.setHeader('content-type', 'application/json');
 						res.status(200);
-						res.send(cube);
+						res.send(JSON.stringify(cube));
 					}else{
 						console.log('Error al actualizar: '+err);
 						res.send('{"status":"400", "msg":"bad_request"}');

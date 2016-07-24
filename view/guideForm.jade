@@ -1,22 +1,58 @@
 doctype html
-html
+html(lang='es')
   head
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
+    script.
+      hljs.initHighlightingOnLoad();
     meta(charset='utf-8')
     title RestingRubik - Guide Form
   body
     a(href=serveraddress) Index
     h1 Guide Form
-    form(enctype='application/json', method='post', action=serveraddress+'api/guide')
-      | Cube:   
-      input(type='text', name='cube')
-      |       Author: 
-      input(type='text', name='author')
-      |       URL:    
-      input(type='url', name='url')
-      |       Parts:  
-      input(type='number', name='parts')
-      |       Format: 
+    form(id='addGuide', enctype='application/json', method='post', action=serveraddress+'api/guide')
+      input(type='text', name='cube', placeholder='Cubo')
+      input(type='text', name='author', placeholder='Autor')
+      input(type='url', name='url', placeholder='URL')
+      input(type='number', name='parts', placeholder='Partes')
       select(name='format')
-        option(selected='') Video
+        option(selected) Video
         option Blog
       input(type='submit', value='POST')
+    br
+    pre.
+      code(id='result_body', class='json')
+    script.
+      $('#addGuide').submit(function(event){
+        
+        event.preventDefault();
+        
+        var $form = $(this),
+            cubo     = $form.find('input[name="cube"]').val(),
+            autor    = $form.find('input[name="author"]').val(),
+            link     = $form.find('input[name="url"]').val(),
+            partes   = $form.find('input[name="parts"]').val(),
+            formato  = $form.find('input[name="format"]').val(),
+            
+            postLink = $format.attr('action');
+            
+        var send = $.post(postLink,{
+          cube     :cubo,
+          author   :autor,
+          url      :link,
+          parts    :partes,
+          format   :formato
+        }, "application/json");
+        
+        send.done(function(guide, textStatus){
+          console.log(guide);
+          console.log(textStatus);
+          $('#result_body').text(JSON.stringify(guide, null, "\t"));
+        });
+        
+        send.fail(function(jqxhr, textStatus, errorThrown){
+          console.log(textStatus, errorThrown, errorThrown.msg);
+        });
+        
+        hljs.initHighlighting();
+      });

@@ -13,7 +13,8 @@ module.exports.getAllAlgtms = function(req, res){
       }
     });
   }catch(err){
-    res.status(500).send('{"status":"500","msg":"internal_server_error"}');
+    res.status(500);
+    res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
 
@@ -32,7 +33,8 @@ module.exports.getAlgByID = function(req, res){
       }
     });
   }catch(err){
-    res.status(500).send('{"status":"500","msg":"internal_server_error"}');
+    res.status(500);
+    res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
 
@@ -53,7 +55,8 @@ module.exports.addAlgtm = function(req, res){
     alg.save(function(err){
       if(!err){
         console.log('Nuevo algoritmo guardado.');
-        res.send(alg);
+        res.setHeader('content-type', 'application/json');
+        res.send(JSON.stringify(alg));
         res.status(200);
       }else{
         console.log('Erro al guardar: '+err);
@@ -62,7 +65,8 @@ module.exports.addAlgtm = function(req, res){
       }
     });
   }catch(err){
-    res.status(500).send('{"status":"500","msg":"internal_server_error"}');
+    res.status(500);
+    res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
 
@@ -82,16 +86,19 @@ module.exports.updateAlgtm = function(req, res){
       alg.save(function(err){
         if(!err){
           console.log('Algoritmo actualizado.');
+          res.setHeader('content-type', 'application/json');
           res.status(200);
-          res.send(alg);
+          res.send(JSON.stringify(alg));
         }else{
           console.log('Error al actualizar: '+err);
-          res.status(400).send('{"status":"400","msg":"bad_request"}');
+          res.status(400);
+          res.send('{"status":"400","msg":"bad_request"}');
         }
       });
     });
   }catch(err){
-    res.status(404).send('{"status":"404","msg","not_found"}');
+    res.status(404);
+    res.send('{"status":"404","msg","not_found"}');
   }
 };
 
@@ -113,6 +120,7 @@ module.exports.deleteAlgtm = function(req, res){
       });
     });
   }catch(err){
-    res.status(500).send('{"status":"500","msg":"internal_server_error"}');
+    res.status(500);
+    res.send('{"status":"500","msg":"internal_server_error"}');
   }
 }

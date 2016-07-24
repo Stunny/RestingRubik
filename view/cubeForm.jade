@@ -1,6 +1,10 @@
-doctype html(lang='en')
-head
-    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js').
+doctype html
+html(lang='es')
+  head
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
+    script.
+      hljs.initHighlightingOnLoad();
     meta(charset='utf-8')   
     title RestingRubik - Cube Form  
   body
@@ -16,7 +20,8 @@ head
         option Modification    
       input(type='submit', value='POST')
     br
-    pre(id='result_body' style='font-family: monospace;')
+    pre.
+      code(id='result_body', class='json')
     script.
         $('#addcube').submit(function(event){
           
@@ -42,12 +47,15 @@ head
           
           send.done(function(cube, textStatus){
             console.log(cube);
-            $('#result_body').text(JSON.stringify(cube));
+            console.log(textStatus);
+            $('#result_body').text(JSON.stringify(cube, null, "\t"));
           });
           
           // handle errors
           send.fail(function(jqxhr, textStatus, errorThrown) {
             console.log(textStatus, errorThrown, errorThrown.msg)
           });
-        
+          
+          hljs.initHighlighting();
         });
+        
