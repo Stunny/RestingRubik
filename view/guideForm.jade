@@ -4,8 +4,6 @@ html(lang='es')
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css')
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
-    script.
-      hljs.initHighlightingOnLoad();
     meta(charset='utf-8')
     title RestingRubik - Guide Form
   body
@@ -46,8 +44,10 @@ html(lang='es')
         }, "application/json");
         
         send.done(function(guide, textStatus){
+          if($('#result_body').hasClass()) $('#result_body').removeAttr('class');
           console.log(guide);
           console.log(textStatus);
+          $('#result_body').addClass('json');
           $('#result_body').text(JSON.stringify(guide, null, "\t"));
           hljs.highlightBlock($('#result_body').get(0));     
         });
