@@ -194,9 +194,9 @@ html(lang='en')
         }
         
         putting = $.ajax({
+          async: true,
           url   :link,
           type  :'put',
-          dataType: "application/json",
           data  : JSON.stringify(putData),
           contentType: "application/json"
         });
