@@ -17,12 +17,13 @@ html(lang='en')
         | Algorithm
         input(type='radio', name='get', value='radioG')
         | Guide
+        input(type='submit', value='GET')
       div(id='getter', style='overflow:auto;')
         pre
           code(id='get_body')
     div(class='putFrame', style='width:45%; float:right; text-align:center')
       h2(style='margin:0') Update Values
-      input(type='text', id='putID')
+      input(type='text', id='putID', placeholder='Element ID')
       form(id='putForm', enctype='application/json')
         input(name ='in1', placeholder='field1', type='text')
         br
@@ -34,7 +35,7 @@ html(lang='en')
         br
         input(name ='in5', placeholder='field5', type='text')
         br
-        input(type'submit', id='PUT' type='text')
+        input(type'submit', value='PUT')
         br
       div(id='putter')
         pre
