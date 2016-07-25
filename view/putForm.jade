@@ -11,9 +11,12 @@ html(lang='en')
     h1(style='text-align:center') RestingRubik - PUT form
     div(class'getFrame', style='width:50%; height:80%; float:left;')
       form(id='getForm')
-        input(type='radio', name='get', value='radioC') Cube
-        input(type='radio', name='get', value='radioA') Algorithm
-        input(type='radio', name='get', value='radioG') Guide
+        input(type='radio', name='get', value='radioC')
+        | Cube
+        input(type='radio', name='get', value='radioA')
+        | Algorithm
+        input(type='radio', name='get', value='radioG')
+        | Guide
       div(id='getter', style='overflow:auto;')
         pre
           code(id='get_body')
