@@ -4,16 +4,19 @@ module.exports.getAllAlgtms = function(req, res){
   try{
     Algtm.find(function(err, algs){
       if(!err){
-        res.send(algs);
+        res.setHeader('content-type', 'application/json');
+        res.send(JSON.stringify(algs));
         res.status(200);
       }else{
         console.log('Error al obtener: '+err);
+        res.setHeader('content-type', 'application/json');
         res.status(204);
         res.send('{"status":"204","msg":"no_content"}');
       }
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
@@ -24,16 +27,19 @@ module.exports.getAlgByID = function(req, res){
   try{
     Algtm.findById(req.params.id, function(err, alg){
       if(!err){
-        res.send(alg);
+        res.setHeader('content-type', 'application/json');
+        res.send(JSON.stringify(alg));
         res.status(200);
       }else{
         console.log('Error al obtener: '+err);
+        res.setHeader('content-type', 'application/json');
         res.status(404);
         res.send('{"status":"404","msg":"not_found"}');
       }
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
@@ -60,12 +66,14 @@ module.exports.addAlgtm = function(req, res){
         res.status(200);
       }else{
         console.log('Erro al guardar: '+err);
+        res.setHeader('content-type', 'application/json');
         res.send('{"status":"400","msg":"bad_request"}');
         res.status(400);
       }
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
@@ -92,12 +100,14 @@ module.exports.updateAlgtm = function(req, res){
         }else{
           console.log('Error al actualizar: '+err);
           res.status(400);
+          res.setHeader('content-type', 'application/json');
           res.send('{"status":"400","msg":"bad_request"}');
         }
       });
     });
   }catch(err){
     res.status(404);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"404","msg","not_found"}');
   }
 };
@@ -111,16 +121,19 @@ module.exports.deleteAlgtm = function(req, res){
         if(!err){
           console.log('Algoritmo eliminado');
           res.status(200);
+          res.setHeader('content-type', 'application/json');
           res.send('{"status":"200","msg":"OK"}');
         }else{
           console.log('Error al eliminar: '+err);
           res.status(404);
+          res.setHeader('content-type', 'application/json');
           res.send('{"status":"404","msg":"not_found"}');
         }
       });
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 }

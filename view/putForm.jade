@@ -9,12 +9,12 @@ html(lang='en')
   body
     a(href=serveraddress, id='back')Index
     h1(style='text-align:center') RestingRubik - PUT form
-    div(class'getFrame', style='width:50%; float:left;')
+    div(class'getFrame', style='width:50%; height:80%; float:left;')
       form(id='getForm')
         input(type='radio', name='get', value='radioC') Cube
         input(type='radio', name='get', value='radioA') Algorithm
         input(type='radio', name='get', value='radioG') Guide
-      div(id='getter')
+      div(id='getter', style='overflow:auto;')
         pre
           code(id='get_body')
     div(class='putFrame', style='width:45%; float:right; text-align:center')
@@ -144,5 +144,73 @@ html(lang='en')
         });
         
       });
-      
+      $('#putForm').submit(function(event){
+        
+        event.preventDefault();
+        
+        var link = $('#back').attr('href')+'/api/'+putType,
+            form = $(this),
+            objID = $('#putID').val(),
+            
+            in1 = fomr.find('input[name="in1"]').val(),
+            in2 = fomr.find('input[name="in2"]').val(),
+            in3 = fomr.find('input[name="in3"]').val(),
+            in4 = fomr.find('input[name="in4"]').val(),
+            in5 = fomr.find('input[name="in5"]').val();
+        
+        link = link +'/'+objID;
+        
+        var putData;
+        switch(putType){
+          case 'cube':
+            putData = {
+              nombre : in1,
+              brand  : in2,
+              capas  : in3,
+              kind   : in4
+            };
+            break;
+          case 'alg':
+            putData = {
+              nombre       : in1,
+              moves_number : in2,
+              moves        : in3,
+              applies_to   : in4,
+              kind         : in5
+            };
+            break;
+          case 'guide':
+            putData = {
+              cube     : in1,
+              author   : in2,
+              url      : in3,
+              parts    : in4,
+              format   : in5
+            };
+            break;
+          default:
+            putData = {};
+            break;
+          
+        }
+        
+        $.ajax({
+          url   :link,
+          type  :'put',
+          data  : JSON.stringify(putData),
+          contentType: "application/json",
+          done  : function(resData, textStatus, jqxhr){
+                    if($('#put_result').hasClass()) $('#put_result').removeAttr('class');
+                    console.log(resData);
+                    console.log(textStatus);
+                    $('#put_result').addClass('json');
+                    $('#put_result').text(JSON.stringify(resData, null, "\t"));
+                    hljs.highlightBlock($('#put_result').get(0));
+                  },
+          fail  : function(jqxhr, textStatus, errorThrown){
+                    console.log(errorThrown.msg);
+                  }
+        });
+        
+      });
       

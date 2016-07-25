@@ -4,16 +4,19 @@ module.exports.getAllGuides = function(req, res){
   try{
     Guide.find(function(err, guides){
       if(!err){
-        res.send(guides);
+        res.setHeader('content-type', 'application/json');
+        res.send(JSON.stringify(guides));
         res.status(200);
       }else{
         console.log('Error al obtener: '+err);
+        res.setHeader('content-type', 'application/json');
         res.status(204);
         res.send('{"status":"204","msg":"no_content"}');
       }
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
@@ -24,16 +27,19 @@ module.exports.getGuideById = function(req, res){
   try{
     Guide.findById(req.params.id, function(err, guide){
       if(!err){
-        res.send(guide);
+        res.send(JSON.stringify(guide));
+        res.setHeader('content-type', 'application/json');
         res.status(200);
       }
       else{
         res.status(404);
+        res.setHeader('content-type', 'application/json');
         res.send('{"status":"404","msg":"not_found"}');
       }
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
@@ -60,12 +66,14 @@ module.exports.addGuide = function(req, res){
         res.send(JSON.stringify(guide));
       }else{
         console.log('Error al guardar: '+err);
+        res.setHeader('content-type', 'application/json');
         res.status(400);
         res.send('{"status":"400", "msg":"bad_request"}');
       }
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
@@ -92,6 +100,7 @@ module.exports.updateGuide = function(req,res){
           res.send(JSON.stringify(guide));
         }else{
           console.log('Error al actualizar: '+err);
+          res.setHeader('content-type', 'application/json');
           res.status(400);
           res.send('{"status":"400","msg":"bad_request"}');
         }
@@ -99,6 +108,7 @@ module.exports.updateGuide = function(req,res){
     });
   }catch(err){
     res.status(404);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"404","msg":"not_found"}');
   }
 };
@@ -116,12 +126,14 @@ module.exports.deleteGuide = function(req,res){
           res.send('{"status":"200","msg":"OK"}');
         }else{
           res.status(400);
+          res.setHeader('content-type', 'application/json');
           res.send('{"status":"400","msg":"bad_request"}');
         }
       });
     });
   }catch(err){
     res.status(404);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"404","msg":"not_found"}');
   }
 };

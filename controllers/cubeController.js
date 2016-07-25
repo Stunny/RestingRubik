@@ -5,16 +5,19 @@
 		try{
 			Cube.find(function(err, cubes){
 				if(!err){
-					 res.send(cubes);
+					 res.setHeader('content-type', 'application/json');
+					 res.send(JSON.stringify(cubes));
 					 res.status(200);
 				}else{
 					console.log('Error al obtener: '+err);
 					res.status(204);
+					res.setHeader('content-type', 'application/json');
 					res.send('{"status":"204","msg":"no_content"}');
 				}
 			});
 		}catch(err){
 			res.status(500);
+			res.setHeader('content-type', 'application/json');
 			res.send('{"status":"500","msg":"internal_server_error"}');
 		}
 	};
@@ -25,16 +28,19 @@
 		try{
 			Cube.findById(req.params.id, function(err, cube){
 				if(!err){
-					res.send(cube);
+					res.setHeader('content-type', 'application/json');
+					res.send(JSON.stringify(cube));
 					res.status(200);
 				}else{
 					console.log('Error al obtener: '+err);
+					res.setHeader('content-type', 'application/json');
 					res.send('{"status":"404", "msg": "not_found"}');
 					res.status(404);
 				}
 			});
 		}catch(err){
 			res.status(500);
+			res.setHeader('content-type', 'application/json');
 			res.send('{"status":"500","msg":"internal_server_error"}');
 		}
 	};
@@ -61,12 +67,14 @@
 					res.status(200);
 				}else{
 					console.log('Error al guardar: '+err);
+					res.setHeader('content-type', 'application/json');
 					res.send('{"status":"400","msg":"bad_request"}');
 					res.status(400);
 				}
 			});
 		}catch(err){
 			res.status(500);
+			res.setHeader('content-type', 'application/json');
 			res.send('{"status":"500","msg":"internal_server_error"}');
 		}
 	};
@@ -92,6 +100,7 @@
 						res.send(JSON.stringify(cube));
 					}else{
 						console.log('Error al actualizar: '+err);
+						res.setHeader('content-type', 'application/json');
 						res.send('{"status":"400", "msg":"bad_request"}');
 						res.status(400);
 					}
@@ -99,6 +108,7 @@
 			});
 		}catch(err){
 			res.status(404);
+			res.setHeader('content-type', 'application/json');
 			res.send('{"status":"404","msg":"not_found"}');
 		}
 	};
