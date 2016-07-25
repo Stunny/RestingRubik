@@ -15,9 +15,9 @@ html(lang='es')
       input(type='text', name='moves', placeholder='Movimientos')
       input(type='text', name='applies_to', placeholder='Aplica a')
       select(name='kind')
-        option(selected) Permutation
-        option Orientation
-        option Conmutator
+        option(selected, value='Permutation') Permutation
+        option(value='Orientation') Orientation
+        option(value='Conmutator') Conmutator
       input(type='submit', value='POST')
     br
     pre

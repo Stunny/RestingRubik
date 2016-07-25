@@ -59,15 +59,19 @@ html(lang='en')
       function setPutToCube(){
         var $form = $('#putForm');
         cleanPutForm();
-        
+        $form.find('input[name="in1"]').val('');
         $form.find('input[name="in1"]').prop('type', 'text');
         $form.find('input[name="in1"]').attr('placeholder', 'Nombre');
+        $form.find('input[name="in2"]').val('')
         $form.find('input[name="in2"]').prop('type', 'text');
         $form.find('input[name="in2"]').attr('placeholder', 'Marca');
+        $form.find('input[name="in3"]').val('');
         $form.find('input[name="in3"]').prop('type', 'text');
         $form.find('input[name="in3"]').attr('placeholder', 'Capas');
+        $form.find('input[name="in4"]').val('');
         $form.find('input[name="in4"]').prop('type', 'text');
         $form.find('input[name="in4"]').attr('placeholder', 'Tipo');
+        $form.find('input[name="in5"]').val('');
         $form.find('input[name="in5"]').prop('disabled', true);      
       }
       

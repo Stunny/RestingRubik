@@ -14,9 +14,9 @@ html(lang='es')
       input(type='text', name='brand', placeholder='Marca')
       input(type='text', name='capas', placeholder='Capas')
       select(name='kind')
-        option(selected) Regular             
-        option Cuboid             
-        option Modification    
+        option(selected, value='Regular') Regular
+        option(value='Cuboid') Cuboid
+        option(value='Modification') Modification
       input(type='submit', value='POST')
     br
     pre
