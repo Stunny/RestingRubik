@@ -18,7 +18,7 @@ html(lang='en')
         input(type='radio', name='get', value='radioG')
         | Guide
         input(type='submit', value='GET')
-      div(id='getter', style='overflow:scroll;')
+      div(id='getter', style='height:80%; overflow:scroll;')
         pre
           code(id='get_body')
     div(class='putFrame', style='width:45%; float:left; text-align:center')
@@ -49,7 +49,7 @@ html(lang='en')
         $form.find('input[name="in3"]').removeAttr('placeholder');
         $form.find('input[name="in4"]').removeAttr('placeholder');
         $form.find('input[name="in5"]').removeAttr('placeholder');
-        $form.find('input[name="in1"]').prop('disabled', false);
+        $form.find('input[name="in5"]').prop('disabled', false);
       }
       
       function setPutToCube(){
