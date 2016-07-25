@@ -5,6 +5,10 @@ html(lang='en')
     script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
     meta(charset='utf-8')
+    style(media="screen").
+      #putForm input{
+        margin-bottom : 5px
+      }
     title RestingRubik - PUT
   body
     a(href=serveraddress, id='back') Index
@@ -23,7 +27,7 @@ html(lang='en')
           code(id='get_body')
     div(class='putFrame', style='width:45%; float:left; text-align:center; padding-left:5px;')
       h2(style='margin:0') Update Values
-      input(type='text', id='putID', placeholder='Element ID')
+      input(type='text', id='putID', placeholder='Element ID', style='margin-top:10px; margin-bottom:5px;')
       form(id='putForm', enctype='application/json')
         input(name ='in1', placeholder='field1', type='text')
         br
@@ -89,7 +93,7 @@ html(lang='en')
         
         $form.find('input[name="in1"]').prop('type', 'text');
         $form.find('input[name="in1"]').attr('placeholder', 'Cubo');
-        $form.find('input[name="in2"]').prop('type', 'number');
+        $form.find('input[name="in2"]').prop('type', 'text');
         $form.find('input[name="in2"]').attr('placeholder', 'Autor');
         $form.find('input[name="in3"]').prop('type', 'text');
         $form.find('input[name="in3"]').attr('placeholder', 'URL');
