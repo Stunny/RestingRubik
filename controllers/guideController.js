@@ -96,7 +96,7 @@ module.exports.updateGuide = function(req,res){
         if(!err){
           console.log('Guia actualizada.');
           res.setHeader('content-type', 'application/json');
-          req.status(200);
+          res.status(200);
           res.send(JSON.stringify(guide));
         }else{
           console.log('Error al actualizar: '+err);
