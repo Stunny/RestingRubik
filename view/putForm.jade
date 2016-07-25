@@ -125,7 +125,7 @@ html(lang='en')
           setPutToGuide();
         }
         
-        var get = $.get(link, "application/json");
+        var get = $.get(link);
         
         get.done(function(elmts, textStatus){
           if($('#get_body').hasClass()) $('#get_body').removeAttr('class');
