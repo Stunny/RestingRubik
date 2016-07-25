@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>RestingRubik - PUT</title>
+  </head>
+  <body>
+    <h1 style="text-align:center;">RestingRubik - PUT form</h1>
+    <div class="getFrame" style="width:50%; float:left;">
+      <form id='getForm'>
+        <input type="radio" name="get" id="radioC">Cube
+        <input type="radio" name="get" id="radioA">Algorithm
+        <input type="radio" name="get" id="radioG">Guide
+        <input type="submit" value="GET">
+      </form>
+      <iframe frameborder="1" style="height:80%;"></iframe>
+    </div>
+    <div class="putFrame" style="width:45%; float:right; text-align:center;">
+      <h2 style="margin:0;">Update Values</h2>
+      <form id="putForm">
+        <input type="text"><br>
+        <input type="text"><br>
+        <input type="text"><br>
+        <input type="text"><br>
+        <input type="text"><br>
+        <input type="submit" value="PUT"><br>
+      </form>
+      <pre>
+        <code id="result_body"></code>
+      </pre>
+    </div>
+  </body>
+</html>

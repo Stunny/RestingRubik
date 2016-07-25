@@ -8,6 +8,8 @@ module.exports = function(app){
 		app.get('/moarguides', formsController.guideForm);
 		app.get('/moaralgs', formsController.algForm);
 
+		app.get('/putForm', formsController.putForm);
+
 	//---API---//
 	var cubeController = require('./controllers/cubeController');
 	var algController = require('./controllers/algController');

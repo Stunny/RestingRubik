@@ -1,0 +1,148 @@
+doctype html
+html(lang='en')
+  head
+    link(rel='stylesheet', href='//cdn.bootcss.com/highlight.js/9.5.0/styles/darkula.min.css')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
+    meta(charset='utf-8')
+    title RestingRubik - PUT
+  body
+    a(href=serveraddress, id='back')Index
+    h1(style='text-align:center') RestingRubik - PUT form
+    div(class'getFrame', style='width:50%; float:left;')
+      form(id='getForm')
+        input(type='radio', name='get', value='radioC') Cube
+        input(type='radio', name='get', value='radioA') Algorithm
+        input(type='radio', name='get', value='radioG') Guide
+      div(id='getter')
+        pre
+          code(id='get_body')
+    div(class='putFrame', style='width:45%; float:right; text-align:center')
+      h2(style='margin:0') Update Values
+      input(type='text', id='putID')
+      form(id='putForm', enctype='application/json')
+        input(name ='in1', placeholder='field1', type='text')
+        br
+        input(name ='in2', placeholder='field2', type='text')
+        br
+        input(name ='in3', placeholder='flield3', type='text')
+        br
+        input(name ='in4', placeholder='field4', type='text')
+        br
+        input(name ='in5', placeholder='field5', type='text')
+        br
+        input(type'submit', id='PUT' type='text')
+        br
+      div(id='putter')
+        pre
+          code(id='put_result')
+    script.
+      
+      function cleanPutForm() {
+        var $form = $('#putForm');
+        $form.find('input[name="in1"]').removeAttr('placeholder');
+        $form.find('input[name="in1"]').removeAttr('type');
+        $form.find('input[name="in2"]').removeAttr('placeholder');
+        $form.find('input[name="in2"]').removeAttr('type');
+        $form.find('input[name="in3"]').removeAttr('placeholder');
+        $form.find('input[name="in3"]').removeAttr('type');
+        $form.find('input[name="in4"]').removeAttr('placeholder');
+        $form.find('input[name="in4"]').removeAttr('type');
+        $form.find('input[name="in5"]').removeAttr('placeholder');
+        $form.find('input[name="in5"]').removeAttr('type');
+        $form.find('input[name="in1"]').prop('disabled', false);
+      }
+      
+      function setPutToCube(){
+        var $form = $('#putForm');
+        cleanPutForm();
+        
+        $form.find('input[name="in1"]').attr('type', 'text');
+        $form.find('input[name="in1"]').attr('placeholder', 'Nombre');
+        $form.find('input[name="in2"]').attr('type', 'text');
+        $form.find('input[name="in2"]').attr('placeholder', 'Marca');
+        $form.find('input[name="in3"]').attr('type', 'text');
+        $form.find('input[name="in3"]').attr('placeholder', 'Capas');
+        $form.find('input[name="in4"]').attr('type', 'text');
+        $form.find('input[name="in4"]').attr('placeholder', 'Tipo');
+        $form.find('input[name="in5"]').prop('disabled', true);      
+      }
+      
+      function setPutToAlg(){
+        var $form = $('#putForm');
+        cleanPutForm();
+        
+        $form.find('input[name="in1"]').attr('type', 'text');
+        $form.find('input[name="in1"]').attr('placeholder', 'Nombre');
+        $form.find('input[name="in2"]').attr('type', 'number');
+        $form.find('input[name="in2"]').attr('placeholder', '#Movims');
+        $form.find('input[name="in3"]').attr('type', 'text');
+        $form.find('input[name="in3"]').attr('placeholder', 'Moves');
+        $form.find('input[name="in4"]').attr('type', 'text');
+        $form.find('input[name="in4"]').attr('placeholder', 'Aplica a');
+        $form.find('input[name="in5"]').attr('type', 'text');
+        $form.find('input[name="in5"]').attr('placeholder', 'Tipo');
+      }
+      
+      function setPutToGuide(){
+        var $form = $('#putForm');
+        cleanPutForm();
+        
+        $form.find('input[name="in1"]').attr('type', 'text');
+        $form.find('input[name="in1"]').attr('placeholder', 'Cubo');
+        $form.find('input[name="in2"]').attr('type', 'number');
+        $form.find('input[name="in2"]').attr('placeholder', 'Autor');
+        $form.find('input[name="in3"]').attr('type', 'text');
+        $form.find('input[name="in3"]').attr('placeholder', 'URL');
+        $form.find('input[name="in4"]').attr('type', 'number');
+        $form.find('input[name="in4"]').attr('placeholder', 'Partes');
+        $form.find('input[name="in5"]').attr('type', 'text');
+        $form.find('input[name="in5"]').attr('placeholder', 'Formato');
+      }
+      
+      var putType;
+      
+      $('#getForm').submit(function(event){
+        
+        event.preventDefault();
+        
+        var link = $('#back').attr('href')+'api/',
+            getRadio = $('#getForm input[name="get"]'),
+            checked = getRadio.filter(':checked').val();
+        
+        if(checked == 'radioC'){ 
+          link = link +'cube';
+          putType = 'cube';
+          setPutToCube();
+        }
+        if(checked == 'radioA'){ 
+          link = link +'alg';
+          putType = 'alg';
+          setPutToAlg();
+        }
+        if(checked == 'radioG'){ 
+          link = link +'guide;'
+          putType = 'guide';
+          setPutToGuide();
+        }
+        
+        var get = $.get(link, "application/json");
+        
+        get.done(function(elmts, textStatus){
+          if($('#get_body').hasClass()) $('#get_body').removeAttr('class');
+          
+          console.log(elmts);
+          console.log(textStatus);
+          
+          $('#get_body').addClass('json');
+          $('#get_body').text(JSON.stringify(elmts, null, "\t"));
+          hljs.highlightBlock($('#get_body').get(0));
+        });
+        
+        get.fail(function(jqxhr, textStatus, errorThrown){
+          console.log(textStatus, errorThrown, errorThrown.msg);
+        });
+        
+      });
+      
+      

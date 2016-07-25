@@ -1,5 +1,6 @@
 {
 	"name" : "RestingRubik",
+	"author":"Alex Vogel Martinez",
 	"version" : "0.1.0",
 	"description" : "Restful API for Rubik's cube type puzzles algorithms",
 	"main" : "server.js",

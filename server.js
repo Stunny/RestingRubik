@@ -16,6 +16,7 @@ app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride());
+app.use('/public', express.static(path.join(__dirname, 'public')));
 //Deprecated ----> app.use(app.router);
 
 
