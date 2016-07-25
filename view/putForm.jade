@@ -201,7 +201,7 @@ html(lang='en')
           contentType: "application/json"
         });
         
-        putting.done(function(resData, textStatus, jqxhr){
+        putting.done(function(resData, textStatus){
                   if($('#put_result').hasClass()) $('#put_result').removeAttr('class');
                   console.log(resData);
                   console.log(textStatus);
@@ -210,7 +210,7 @@ html(lang='en')
                   hljs.highlightBlock($('#put_result').get(0));
                 });
         putting.fail(function(jqxhr, textStatus, errorThrown){
-                  console.log(errorThrown.msg);
+                  console.log(textStatus, errorThrown);
                 });
         
       });
