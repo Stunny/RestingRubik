@@ -18,10 +18,10 @@ html(lang='en')
         input(type='radio', name='get', value='radioG')
         | Guide
         input(type='submit', value='GET')
-      div(id='getter', style='overflow:auto;')
+      div(id='getter', style='overflow:scroll;')
         pre
           code(id='get_body')
-    div(class='putFrame', style='width:45%; float:right; text-align:center')
+    div(class='putFrame', style='width:45%; float:left; text-align:center')
       h2(style='margin:0') Update Values
       input(type='text', id='putID', placeholder='Element ID')
       form(id='putForm', enctype='application/json')
@@ -45,15 +45,10 @@ html(lang='en')
       function cleanPutForm() {
         var $form = $('#putForm');
         $form.find('input[name="in1"]').removeAttr('placeholder');
-        $form.find('input[name="in1"]').removeAttr('type');
         $form.find('input[name="in2"]').removeAttr('placeholder');
-        $form.find('input[name="in2"]').removeAttr('type');
         $form.find('input[name="in3"]').removeAttr('placeholder');
-        $form.find('input[name="in3"]').removeAttr('type');
         $form.find('input[name="in4"]').removeAttr('placeholder');
-        $form.find('input[name="in4"]').removeAttr('type');
         $form.find('input[name="in5"]').removeAttr('placeholder');
-        $form.find('input[name="in5"]').removeAttr('type');
         $form.find('input[name="in1"]').prop('disabled', false);
       }
       
@@ -61,13 +56,13 @@ html(lang='en')
         var $form = $('#putForm');
         cleanPutForm();
         
-        $form.find('input[name="in1"]').attr('type', 'text');
+        $form.find('input[name="in1"]').prop('type', 'text');
         $form.find('input[name="in1"]').attr('placeholder', 'Nombre');
-        $form.find('input[name="in2"]').attr('type', 'text');
+        $form.find('input[name="in2"]').prop('type', 'text');
         $form.find('input[name="in2"]').attr('placeholder', 'Marca');
-        $form.find('input[name="in3"]').attr('type', 'text');
+        $form.find('input[name="in3"]').prop('type', 'text');
         $form.find('input[name="in3"]').attr('placeholder', 'Capas');
-        $form.find('input[name="in4"]').attr('type', 'text');
+        $form.find('input[name="in4"]').prop('type', 'text');
         $form.find('input[name="in4"]').attr('placeholder', 'Tipo');
         $form.find('input[name="in5"]').prop('disabled', true);      
       }
@@ -76,15 +71,15 @@ html(lang='en')
         var $form = $('#putForm');
         cleanPutForm();
         
-        $form.find('input[name="in1"]').attr('type', 'text');
+        $form.find('input[name="in1"]').prop('type', 'text');
         $form.find('input[name="in1"]').attr('placeholder', 'Nombre');
-        $form.find('input[name="in2"]').attr('type', 'number');
+        $form.find('input[name="in2"]').prop('type', 'number');
         $form.find('input[name="in2"]').attr('placeholder', '#Movims');
-        $form.find('input[name="in3"]').attr('type', 'text');
+        $form.find('input[name="in3"]').prop('type', 'text');
         $form.find('input[name="in3"]').attr('placeholder', 'Moves');
-        $form.find('input[name="in4"]').attr('type', 'text');
+        $form.find('input[name="in4"]').prop('type', 'text');
         $form.find('input[name="in4"]').attr('placeholder', 'Aplica a');
-        $form.find('input[name="in5"]').attr('type', 'text');
+        $form.find('input[name="in5"]').prop('type', 'text');
         $form.find('input[name="in5"]').attr('placeholder', 'Tipo');
       }
       
@@ -92,15 +87,15 @@ html(lang='en')
         var $form = $('#putForm');
         cleanPutForm();
         
-        $form.find('input[name="in1"]').attr('type', 'text');
+        $form.find('input[name="in1"]').prop('type', 'text');
         $form.find('input[name="in1"]').attr('placeholder', 'Cubo');
-        $form.find('input[name="in2"]').attr('type', 'number');
+        $form.find('input[name="in2"]').prop('type', 'number');
         $form.find('input[name="in2"]').attr('placeholder', 'Autor');
-        $form.find('input[name="in3"]').attr('type', 'text');
+        $form.find('input[name="in3"]').prop('type', 'text');
         $form.find('input[name="in3"]').attr('placeholder', 'URL');
-        $form.find('input[name="in4"]').attr('type', 'number');
+        $form.find('input[name="in4"]').prop('type', 'number');
         $form.find('input[name="in4"]').attr('placeholder', 'Partes');
-        $form.find('input[name="in5"]').attr('type', 'text');
+        $form.find('input[name="in5"]').prop('type', 'text');
         $form.find('input[name="in5"]').attr('placeholder', 'Formato');
       }
       
