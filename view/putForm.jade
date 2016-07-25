@@ -18,7 +18,7 @@ html(lang='en')
         input(type='radio', name='get', value='radioG')
         | Guide
         input(type='submit', value='GET')
-      div(id='getter', style='height:80%; overflow:scroll;')
+      div(id='getter', style='height:200px; overflow:scroll;')
         pre
           code(id='get_body')
     div(class='putFrame', style='width:45%; float:left; text-align:center')
@@ -120,7 +120,7 @@ html(lang='en')
           setPutToAlg();
         }
         if(checked == 'radioG'){ 
-          link = link +'guide;'
+          link = link +'guide'
           putType = 'guide';
           setPutToGuide();
         }
