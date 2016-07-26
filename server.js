@@ -21,10 +21,8 @@ mongoose.connect('mongodb://localhost/cube', function(err,res){
 	else console.log('Conexion a la base de datos realizada');
 });
 
+
 //---Proves per a depuracio
-app.get('/', function(req,res){
-	res.send('RESTingRubik API');
-});
 
 app.post('/prueba', function(req, res){
 	res.status(200).send(req.body);
