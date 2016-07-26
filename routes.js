@@ -16,6 +16,11 @@ module.exports = function(app){
 	var algController = require('./controllers/algController');
 	var guideController = require('./controllers/guideController');
 
+		app.get('/api/',function(req, res){
+			res.status(200);
+			res.send(JSON.stringify({msg : 'Welcome to RestingRubik API'}));
+		});
+
 		//--Metodos de la ruta '/cube'
 		app.get('/api/cube', cubeController.getAllCubes);
 		app.get('/api/cube/:id', cubeController.getCubeByID);
