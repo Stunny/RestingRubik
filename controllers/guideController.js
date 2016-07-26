@@ -47,7 +47,6 @@ module.exports.getGuideById = function(req, res){
 //---POST
 module.exports.addGuide = function(req, res){
   var Guide = require('../models/guide');
-  console.log('POST');
   try{
     console.log(req.body);
 
@@ -81,7 +80,6 @@ module.exports.addGuide = function(req, res){
 //---PUT
 module.exports.updateGuide = function(req,res){
   var Guide = require('../models/guide');
-  console.log('PUT');
   try{
     console.log(req.body);
 

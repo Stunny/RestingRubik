@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var errorHandler = require('errorhandler');
 var path = require('path');
+var morgan = require('morgan');
 var port = require('./constants').APP_PORT;
 
 //--Enviroment configuration
@@ -17,6 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(morgan('dev'));
 //Deprecated ----> app.use(app.router);
 
 

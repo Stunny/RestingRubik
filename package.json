@@ -1,17 +1,18 @@
 {
-	"name" : "RestingRubik",
-	"author":"Alex Vogel Martinez",
-	"version" : "0.1.1c",
-	"description" : "Restful API for Rubik's cube type puzzles algorithms",
-	"main" : "server.js",
-	"private": true,
-	"dependencies" : {
-		"express" : "latest",
-		"mongoose" : "latest",
-		"body-parser":"^1.15.2",
-		"method-override":"^2.3.6",
-		"errorhandler":"^1.4.3",
-		"path":"^0.12.7",
-		"jade":"^1.11.0"
-	}
+  "name": "RestingRubik",
+  "author": "Alex Vogel Martinez",
+  "version": "0.1.1c",
+  "description": "Restful API for Rubik's cube type puzzles algorithms",
+  "main": "server.js",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "errorhandler": "^1.4.3",
+    "express": "latest",
+    "jade": "^1.11.0",
+    "method-override": "^2.3.6",
+    "mongoose": "latest",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7"
+  }
 }

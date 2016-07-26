@@ -48,7 +48,6 @@
 	//POST---AÑADIR CUBO
 	module.exports.addCubo = function(req, res){
 		var Cube = require('../models/cube');
-		console.log('POST');
 		try{
 			console.log(req.body);
 
@@ -82,7 +81,6 @@
 	//PUT---ACTUALIZAR INFO
 	module.exports.updateCube = function(req,res){
 		var Cube = require('../models/cube');
-		console.log('PUT');
 		try{
 			console.log(req.body);
 

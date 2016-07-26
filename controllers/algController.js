@@ -47,7 +47,6 @@ module.exports.getAlgByID = function(req, res){
 //POST---AÑADIR ALG
 module.exports.addAlgtm = function(req, res){
   var Algtm = require('../models/algorithm');
-  console.log('POST');
   console.log(req.body);
   try{
     var alg = new Algtm({
@@ -81,7 +80,6 @@ module.exports.addAlgtm = function(req, res){
 //PUT---UPDATE ALG
 module.exports.updateAlgtm = function(req, res){
   var Algtm = require('../models/algorithm');
-  console.log('PUT');
   try{
     console.log(req.body);
     Algtm.findById(req.params.id, function(err, alg){
