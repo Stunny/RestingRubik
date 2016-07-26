@@ -9,6 +9,7 @@ module.exports = function(app){
 		app.get('/moaralgs', formsController.algForm);
 
 		app.get('/putForm', formsController.putForm);
+		app.get('/deleteForm', formsController.deleteForm);
 
 	//---API---//
 	var cubeController = require('./controllers/cubeController');

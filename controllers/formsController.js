@@ -38,4 +38,12 @@ module.exports.putForm = function(req, res){
   }catch(err){
     res.status(500);
   }
-}
+};
+module.exports.deleteForm = function(req, res){
+  var server = require('../constants').SERVER_ADDRESS;
+  try{
+    res.render('deleteForm', {serveraddress : server});
+  }catch(err){
+    res.status(500);
+  }
+};
