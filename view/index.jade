@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='utf-8')    
+    title RestingRubiks API
+  body
+    h1 Welcome to the RestingRubik API     
+    div(style='width:45%; margin:10px; float: left')
+      h2 POST forms   
+      ul
+        li
+          a(href=serveraddress+'moarcubes') Post cube      
+        li
+          a(href=serveraddress+'moarguides') Post guide      
+        li
+          a(href=serveraddress+'moaralgs') Post algorithms   
+      h2 GET sites   
+      ul
+        li
+          a(href=serveraddress+'api/cube') Cubes     
+        li
+          a(href=serveraddress+'api/alg') Algorithms     
+        li
+          a(href=serveraddress+'api/guide') Guides
+    div(style='width:45%; margin: 10px; float: right')
+      h2 PUT
+      li
+        a(href=serveraddress+'putForm') Put form

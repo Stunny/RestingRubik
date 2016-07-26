@@ -1,0 +1,59 @@
+doctype html
+html(lang='es')
+  head
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
+    meta(charset='utf-8')
+    title RestingRubik - Alg Form
+  body
+    a(href=serveraddress) Index
+    h1 Algorithm Form
+    form(id='addAlg', enctype='application/json', method='post', action=serveraddress+'api/alg')
+      input(type='text', name='nombre', placeholder='Nombre')
+      input(type='number', name='moves_number', placeholder='#Movimientos')
+      input(type='text', name='moves', placeholder='Movimientos')
+      input(type='text', name='applies_to', placeholder='Aplica a')
+      select(name='kind')
+        option(selected, value='Permutation') Permutation
+        option(value='Orientation') Orientation
+        option(value='Conmutator') Conmutator
+      input(type='submit', value='POST')
+    br
+    pre
+      code(id='result_body')
+    script.
+      $('#addAlg').submit(function(event){
+        
+        event.preventDefault();
+        
+        var $form = $(this),
+            nom   = $form.find('input[name="nombre"]').val(),
+            nummv = $form.find('input[name="moves_number"]').val(),
+            moves = $form.find('input[name="moves"]').val(),
+            appl2 = $form.find('input[name="applies_to"]').val(),
+            tipo  = $form.find('select[name="kind"]').val(),
+            
+            url   = $form.attr('action');
+            
+        var send = $.post(url, {
+          nombre         :nom,
+          moves_number   :nummv,
+          moves          :moves,
+          applies_to     :appl2,
+          kind           :tipo
+        }, "application/json");
+        
+        send.done(function(alg, textStatus){
+          if($('#result_body').hasClass()) $('#result_body').removeAttr('class');
+          console.log(alg);
+          console.log(textStatus);
+          $('#result_body').addClass('json');
+          $('#result_body').text(JSON.stringify(alg, null, "\t"));
+          hljs.highlightBlock($('#result_body').get(0));
+        });
+        
+        send.fail(function(jqxhr, textStatus, errorThrown){
+          console.log(textStatus, errorThrown, errorThrown.msg);
+        });
+      });

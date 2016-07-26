@@ -1,19 +1,22 @@
 //--GET ALL GUIDES
-module.exports.getAllGuides = function(){
+module.exports.getAllGuides = function(req, res){
   var Guide = require('../models/guide');
   try{
     Guide.find(function(err, guides){
       if(!err){
-        res.send(guides);
+        res.setHeader('content-type', 'application/json');
+        res.send(JSON.stringify(guides));
         res.status(200);
       }else{
         console.log('Error al obtener: '+err);
+        res.setHeader('content-type', 'application/json');
         res.status(204);
         res.send('{"status":"204","msg":"no_content"}');
       }
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
@@ -24,22 +27,25 @@ module.exports.getGuideById = function(req, res){
   try{
     Guide.findById(req.params.id, function(err, guide){
       if(!err){
-        res.send(guide);
+        res.send(JSON.stringify(guide));
+        res.setHeader('content-type', 'application/json');
         res.status(200);
       }
       else{
         res.status(404);
+        res.setHeader('content-type', 'application/json');
         res.send('{"status":"404","msg":"not_found"}');
       }
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
 
 //---POST
-moule.exports.addGuide = function(req, res){
+module.exports.addGuide = function(req, res){
   var Guide = require('../models/guide');
   console.log('POST');
   try{
@@ -47,22 +53,27 @@ moule.exports.addGuide = function(req, res){
 
     var guide = new Guide({
       cube    :req.body.cube,
-      author: :req.body.author,
-      url:    :req.body.url,
-      parts:  :req.body.parts,
-      format: :req.body.format
+      author  :req.body.author,
+      url     :req.body.url,
+      parts   :req.body.parts,
+      format  :req.body.format
     });
     guide.save(function(err){
       if(!err){
         console.log('Nueva guia guardada.');
-        res.status(200).send(guide);
+        res.setHeader('content-type', 'application/json');
+        res.status(200);
+        res.send(JSON.stringify(guide));
       }else{
         console.log('Error al guardar: '+err);
-        res.status(400).send('{"status":"400", "msg":"bad_request"}');
+        res.setHeader('content-type', 'application/json');
+        res.status(400);
+        res.send('{"status":"400", "msg":"bad_request"}');
       }
     });
   }catch(err){
     res.status(500);
+    res.setHeader('content-type', 'application/json');
     res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
@@ -84,15 +95,21 @@ module.exports.updateGuide = function(req,res){
       guide.save(function(err){
         if(!err){
           console.log('Guia actualizada.');
-          req.status(200).send(guide);
+          res.setHeader('content-type', 'application/json');
+          res.status(200);
+          res.send(JSON.stringify(guide));
         }else{
           console.log('Error al actualizar: '+err);
-          res.status(400).send('{"status":"400","msg":"bad_request"}');
+          res.setHeader('content-type', 'application/json');
+          res.status(400);
+          res.send('{"status":"400","msg":"bad_request"}');
         }
       });
     });
   }catch(err){
-    res.status(404).send('{"status":"404","msg":"not_found"}');
+    res.status(404);
+    res.setHeader('content-type', 'application/json');
+    res.send('{"status":"404","msg":"not_found"}');
   }
 };
 
@@ -104,13 +121,19 @@ module.exports.deleteGuide = function(req,res){
       guide.remove(function(err){
         if(!err){
           console.log('Guia eliminada.');
-          res.status(200).send('{"status":"200","msg":"OK"}');
+          res.setHeader('content-type', 'application/json');
+          res.status(200);
+          res.send('{"status":"200","msg":"OK"}');
         }else{
-          res.status(400).send('{"status":"400","msg":"bad_request"}');
+          res.status(400);
+          res.setHeader('content-type', 'application/json');
+          res.send('{"status":"400","msg":"bad_request"}');
         }
       });
     });
   }catch(err){
-    res.status(404).send('{"status":"404","msg":"not_found"}');
+    res.status(404);
+    res.setHeader('content-type', 'application/json');
+    res.send('{"status":"404","msg":"not_found"}');
   }
 };

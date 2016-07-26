@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>RestingRubik - Cube Form</title>
+  </head>
+  <body>
+    <a href="http://192.168.1.100:5000/">Index</a>
+    <h1>Cube Form</h1>
+    <form enctype="application/json" method="post" action="http://192.168.1.100:5000/api/cube">
+      Nombre: <input type="text" name="nombre">
+      Brand: <input type="text" name="brand">
+      Capas: <input type="text" name="capas">
+      Kind: <select name="kind">
+              <option selected>Regular</option>
+              <option>Cuboid</option>
+              <option>Modification</option>
+            </select>
+      <input type="submit" value="POST">
+    </form>
+  </body>
+</html>

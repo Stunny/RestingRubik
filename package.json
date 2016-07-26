@@ -1,6 +1,7 @@
 {
 	"name" : "RestingRubik",
-	"version" : "0.0.1",
+	"author":"Alex Vogel Martinez",
+	"version" : "Test 0.1.1b",
 	"description" : "Restful API for Rubik's cube type puzzles algorithms",
 	"main" : "server.js",
 	"private": true,
@@ -9,6 +10,8 @@
 		"mongoose" : "latest",
 		"body-parser":"^1.15.2",
 		"method-override":"^2.3.6",
-		"errorhandler":"^1.4.3"
+		"errorhandler":"^1.4.3",
+		"path":"^0.12.7",
+		"jade":"^1.11.0"
 	}
 }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>RestingRubik - Guide Form</title>
+  </head>
+  <body>
+    <a href="http://192.168.1.100:5000/">Index</a>
+    <h1>Guide Form</h1>
+    <form enctype="application/json" method="post" action="http://192.168.1.100:5000/api/guide">
+      Cube:   <input type="text" name="cube">
+      Author: <input type="text" name="author">
+      URL:    <input type="url" name="url">
+      Parts:  <input type="number" name="parts">
+      Format: <select name="format">
+                <option selected>Video</option>
+                <option>Blog</option>
+              </select>
+      <input type="submit" value="POST">
+    </form>
+  </body>
+</html>
