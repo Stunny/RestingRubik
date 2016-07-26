@@ -81,7 +81,7 @@ html(lang='en')
         
         var form = $(this),
             elmtID = form.find('input[id="deleteID"]'),
-            link = $('#back').attr('href') + 'api/' + deleteType;
+            link = $('#back').attr('href') + 'api/' + deleteType+'/'+elmtID;
         
         var deleting = $.ajax({
           async:   true,
