@@ -34,7 +34,7 @@ module.exports = function(app, apiRoutes){
 			res.send(JSON.stringify({msg : 'Welcome to RestingRubik API'}));
 		});
 
-		apiRoutes.post('/apiauth', require('./controllers/authController'));
+		app.post('/apiauth', require('./controllers/authController')); //Si lo pongo por las rutas de la api no deja utenticar
 
 		//--Metodos de la ruta '/cube'
 		apiRoutes.get('/cube', cubeController.getAllCubes);
