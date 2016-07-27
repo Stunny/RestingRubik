@@ -27,6 +27,9 @@ html(lang='en')
         code(id='reg_result')
   script.
     $('#regForm').submit(function(event){
+      
+      event.preventDefault();
+      
       var form = $(this),
           uname = form.find('input[id="user_name"]').val(),
           psswd = form.find('input[id="user_psswd"]').val(),
