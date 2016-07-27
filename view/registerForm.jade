@@ -34,7 +34,7 @@ html(lang='en')
           
           domain = $('#back').attr('href')+'register';
           
-          if(psswd != psswd2){
+          if(psswd != psswd2 || psswd == '' || psswd2 == ''){
             $('#reg_result').text("Passwords don't match");
           }else{
             
@@ -43,12 +43,12 @@ html(lang='en')
               password : psswd
             }, "application/json");
             
-            register.done(function(cube, textStatus){
+            register.done(function(resData, textStatus){
               if($('#reg_result').hasClass()) $('#reg_result').removeAttr('class');
-              console.log(cube);
+              console.log(resData);
               console.log(textStatus);
               $('#reg_result').addClass('json');
-              $('#reg_result').text(JSON.stringify(cube, null, "\t"));
+              $('#reg_result').text(JSON.stringify(resData, null, "\t"));
               hljs.highlightBlock($('#reg_result').get(0));
             });
             
