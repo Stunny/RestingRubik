@@ -9,32 +9,40 @@ var methodOverride = require('method-override');
 var errorHandler = require('errorhandler');
 var path = require('path');
 var morgan = require('morgan');
+var jwt = require('jsonwebtoken');
 var port = require('./constants').APP_PORT;
+var config = require('./config');
+
+var apiRoutes = express.Router();
 
 //--Enviroment configuration
 app.set('views', './view');
 app.set('view engine', 'jade');
+app.set('secret', config.secret);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(methodOverride());
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(morgan('dev'));
-//Deprecated ----> app.use(app.router);
 
+app.use('/api', apiRoutes);
 
 //---Database connection
-mongoose.connect('mongodb://localhost/cube', function(err,res){
+mongoose.connect(config.dataBase, function(err,res){
 	if(err) console.log('Error al conectar a la base de datos:'+err);
 	else console.log('Conexion a la base de datos realizada');
 });
 
 //---Proves per a depuracio
-app.post('/prueba', function(req, res){
+app.get('/', function(req, res){
+	res.send('RestingRubik v0.1.1');
+});
+app.post('/', function(req, res){
 	res.status(200).send(req.body);
 });
 
-//---Enrutamiento de la API
-require('./routes')(app);
+//---Enrutamiento de la aplicacion
+require('./routes')(app, apiRoutes);
 
 //---Error handling
 
