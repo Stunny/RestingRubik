@@ -12,6 +12,7 @@ html(lang='en')
     title RestingRubik - Delete Form
   body
     a(href=serveraddress, id='back') Index
+    input(type='text', id='token', placeholder='API Token')
     h1 Delete Form
     div(class'getFrame', style='width:50%; height:80%; float:left;')
       form(id='getForm')
@@ -36,7 +37,8 @@ html(lang='en')
           code(id='delete_result')
     script.
       
-      var deleteType;
+      var deleteType,
+          token = $('#token').val();
       
       $('#getForm').submit(function(event){
         
@@ -59,7 +61,7 @@ html(lang='en')
           deleteType = 'guide';
         }
         
-        var get = $.get(link, "application/json");
+        var get = $.get(link, {token : token}, "application/json");
         
         get.done(function(elmts, textStatus){
           if($('#get_body').hasClass()) $('#get_body').removeAttr('class');
@@ -88,6 +90,7 @@ html(lang='en')
         var deleting = $.ajax({
           async:   true,
           url:     link,
+          beforeSend: function(xhr){xhr.setRequestHeader('x-access-token', token);},
           type:    'delete'
         });
         

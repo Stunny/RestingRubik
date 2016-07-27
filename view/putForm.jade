@@ -12,6 +12,7 @@ html(lang='en')
     title RestingRubik - PUT
   body
     a(href=serveraddress, id='back') Index
+    input(type='text', id='token', placeholder='API Token')
     h1(style='text-align:center') RestingRubik - PUT form
     div(class'getFrame', style='width:50%; height:80%; float:left;')
       form(id='getForm')
@@ -45,6 +46,8 @@ html(lang='en')
         pre
           code(id='put_result', style='text-align:left;')
     script.
+      
+      var token = $('#token').val();
       
       function cleanPutForm() {
         $('#putID').val('');
@@ -135,7 +138,7 @@ html(lang='en')
           setPutToGuide();
         }
         
-        var get = $.get(link, "application/json");
+        var get = $.get(link, {token: token}, "application/json");
         
         get.done(function(elmts, textStatus){
           if($('#get_body').hasClass()) $('#get_body').removeAttr('class');
@@ -207,6 +210,7 @@ html(lang='en')
           async: true,
           url   :link,
           type  :'put',
+          beforeSend: function(xhr){xhr.setRequestHeader('x-access-token', token)},
           data  : JSON.stringify(putData),
           contentType: "application/json"
         });

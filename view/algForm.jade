@@ -6,6 +6,10 @@ html(lang='es')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
     meta(charset='utf-8')
     title RestingRubik - Alg Form
+    style(media="screen").
+      input{
+        margin : 5px
+      }
   body
     a(href=serveraddress) Index
     h1 Algorithm Form
@@ -18,6 +22,8 @@ html(lang='es')
         option(selected, value='Permutation') Permutation
         option(value='Orientation') Orientation
         option(value='Conmutator') Conmutator
+        br
+      input(type='text', id='token', placeholder='API Token')
       input(type='submit', value='POST')
     br
     pre
@@ -34,9 +40,11 @@ html(lang='es')
             appl2 = $form.find('input[name="applies_to"]').val(),
             tipo  = $form.find('select[name="kind"]').val(),
             
-            url   = $form.attr('action');
+            url   = $form.attr('action'),
+            token = $('#token').val();
             
         var send = $.post(url, {
+          token          :token,
           nombre         :nom,
           moves_number   :nummv,
           moves          :moves,

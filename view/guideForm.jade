@@ -17,6 +17,7 @@ html(lang='es')
       select(name='format')
         option(selected, value='Video') Video
         option(value='Blog') Blog
+      input(type='text', id='token', placeholder='API Token')
       input(type='submit', value='POST')
     br
     pre
@@ -33,9 +34,11 @@ html(lang='es')
             partes   = $form.find('input[name="parts"]').val(),
             formato  = $form.find('select[name="format"]').val(),
             
-            postLink = $form.attr('action');
+            postLink = $form.attr('action'),
+            token = $('#token').val();
             
         var send = $.post(postLink,{
+          token    :token,
           cube     :cubo,
           author   :autor,
           url      :link,

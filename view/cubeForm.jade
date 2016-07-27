@@ -17,6 +17,7 @@ html(lang='es')
         option(selected, value='Regular') Regular
         option(value='Cuboid') Cuboid
         option(value='Modification') Modification
+      input(type='text', id='token', placeholder='API Token')
       input(type='submit', value='POST')
     br
     pre
@@ -34,10 +35,12 @@ html(lang='es')
               layers = $form.find('input[name="capas"]').val(),
               tipo = $form.find('select[name="kind"]').val(),
               
-              url = $form.attr('action');
+              url = $form.attr('action'),
+              token = $('#token').val();
           
           //Envio los valores a la api
           var send = $.post(url, {
+            token  : token,
             nombre : nom,
             brand  : marca,
             capas  : layers,
