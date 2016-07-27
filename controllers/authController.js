@@ -23,9 +23,9 @@ module.exports = function(req, res){
         }));
       }else{
         // Autenticacion satisfactoria. Devuelvo el token
-        var token = jwt.sign(user, conf.secret,
+        var token = jwt.sign(user, conf.secret,{
           expireInMinutes : 1440 //Tiempo de vida del token: 24h
-        );
+        });
 
         res.status(200);
         res.send(JSON.stringify({
