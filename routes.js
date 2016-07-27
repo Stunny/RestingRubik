@@ -23,7 +23,7 @@ module.exports = function(app, apiRoutes){
 
 		apiRoutes.use(function(req, res, next){
 			// S'intenta aconseguir el JWT de les tres formes possibles
-			var token = req.body.toke || req.query.token || req.headers['x-access-token'];
+			var token = req.body.token || req.query.token || req.headers['x-access-token'];
 			require('./controllers/tokenVerifier')(req, res, token, next, app);
 		});
 
