@@ -59,6 +59,8 @@ html(lang='en')
           deleteType = 'guide';
         }
         
+        var get = $.get(link, "application/json");
+        
         get.done(function(elmts, textStatus){
           if($('#get_body').hasClass()) $('#get_body').removeAttr('class');
           

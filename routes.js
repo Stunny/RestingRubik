@@ -10,7 +10,8 @@ module.exports = function(app, apiRoutes){
 		app.get('/putForm', formsController.putForm);
 		app.get('/deleteForm', formsController.deleteForm);
 
-		app.get('/register', formsController.registerForm); //<-------------FALTA
+		app.get('/register', formsController.registerForm);
+		app.post('/register', require('./controllers/registerController'));
 		app.get('/setup', setup);
 
 	//---API---//
