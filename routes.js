@@ -2,7 +2,7 @@ module.exports = function(app, apiRoutes){
 
 	//---FORMULARIS---//
 	var formsController = require('./controllers/formsController');
-
+	var setup = require('./controllers/setup');
 		app.get('/index', formsController.indice);
 		app.get('/moarcubes', formsController.cubeForm);
 		app.get('/moarguides', formsController.guideForm);
@@ -11,19 +11,7 @@ module.exports = function(app, apiRoutes){
 		app.get('/deleteForm', formsController.deleteForm);
 
 		app.get('/register', formsController.registerForm); //<-------------FALTA
-		app.get('/setup', function(req, res){
-			var User = require('./models/user'),
-					conf = require('./config'),			//Usuario minimo de la aplicacion
-					cp = new User({
-						name : 'cubopez',
-						password : conf.hashCode('hoo-banginOG')
-					});
-					cp.save(function(err){
-						if(err) throw err;
-						console.log('Cubopez registrado');
-						res.send(JSON.stringify({success : true}));
-					});
-		})
+		app.get('/setup', setup);
 
 	//---API---//
 	var cubeController = require('./controllers/cubeController');
@@ -45,7 +33,7 @@ module.exports = function(app, apiRoutes){
 			res.send(JSON.stringify({msg : 'Welcome to RestingRubik API'}));
 		});
 
-		apiRoutes.post('/apiauth', require('./controllers/authController')); //<---------FALTA
+		apiRoutes.post('/apiauth', require('./controllers/authController'));
 
 		//--Metodos de la ruta '/cube'
 		apiRoutes.get('/cube', cubeController.getAllCubes);
