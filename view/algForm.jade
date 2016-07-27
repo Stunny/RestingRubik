@@ -41,16 +41,23 @@ html(lang='es')
             tipo  = $form.find('select[name="kind"]').val(),
             
             url   = $form.attr('action'),
-            token = $('#token').val();
+            token = $('#token').val(),
             
-        var send = $.post(url, {
-          token          :token,
-          nombre         :nom,
-          moves_number   :nummv,
-          moves          :moves,
-          applies_to     :appl2,
-          kind           :tipo
-        }, "application/json");
+            postData = {
+              nombre         :nom,
+              moves_number   :nummv,
+              moves          :moves,
+              applies_to     :appl2,
+              kind           :tipo
+            }
+            
+        var send = $.ajax({
+          async : true,
+          type: 'post',
+          url: url,
+          data: JSON.stringify(postData),
+          beforeSend: function(xhr){xhr.setRequestHeader('x-access-token', token);}
+        });
         
         send.done(function(alg, textStatus){
           if($('#result_body').hasClass()) $('#result_body').removeAttr('class');

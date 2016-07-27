@@ -36,16 +36,21 @@ html(lang='es')
               tipo = $form.find('select[name="kind"]').val(),
               
               url = $form.attr('action'),
-              token = $('#token').val();
+              token = $('#token').val(),
+              postData = {
+                nombre : nom,
+                brand  : marca,
+                capas  : layers,
+                kind   : tipo
+              };
           
           //Envio los valores a la api
-          var send = $.post(url, {
-            token  : token,
-            nombre : nom,
-            brand  : marca,
-            capas  : layers,
-            kind   : tipo
-          }, "application/json"); //Set the expected reponse type to JSON
+          var send = $.ajax({
+            async: true,
+            type: 'post',
+            url : url,
+            beforeSend: function(xhr){xhr.setRequestHeader('x-access-token', token);}
+          });
           
           send.done(function(cube, textStatus){
             if($('#result_body').hasClass()) $('#result_body').removeAttr('class');

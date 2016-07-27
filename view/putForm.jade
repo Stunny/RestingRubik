@@ -138,7 +138,13 @@ html(lang='en')
           setPutToGuide();
         }
         
-        var get = $.get(link, {token: token}, "application/json");
+        //var get = $.get(link, {token: token}, "application/json");
+        var get = $.ajax({
+          async : true,
+          type : 'get',
+          url: link,
+          beforeSend: function(xhr){xhr.setRequestHeader('x-access-token', token);}
+        });
         
         get.done(function(elmts, textStatus){
           if($('#get_body').hasClass()) $('#get_body').removeAttr('class');
