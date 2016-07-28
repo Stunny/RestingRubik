@@ -46,10 +46,7 @@ html(lang='en')
         pre
           code(id='put_result', style='text-align:left;')
     script.
-      var token = $('#token').val();
-      $.ajaxSetup({
-        headers: {'x-access-token' : token}
-      });
+      
       
       function cleanPutForm() {
         $('#putID').val('');
@@ -113,6 +110,12 @@ html(lang='en')
         $form.find('input[name="in5"]').prop('type', 'text');
         $form.find('input[name="in5"]').attr('placeholder', 'Formato');
       }
+      
+      var token = $('#token').val();
+      
+      $.ajaxSetup({
+        headers: {'x-access-token' : token}
+      });
       
       var putType;
       
