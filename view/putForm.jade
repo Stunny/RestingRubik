@@ -47,7 +47,6 @@ html(lang='en')
           code(id='put_result', style='text-align:left;')
     script.
       var token = $('#token').val();
-      console.log(token);
       $.ajaxSetup({
         headers: {'x-access-token' : token}
       });
@@ -118,7 +117,7 @@ html(lang='en')
       var putType;
       
       $('#getForm').submit(function(event){
-        
+        console.log(token);
         event.preventDefault();
         
         var link = $('#back').attr('href')+'api/',
