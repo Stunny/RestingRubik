@@ -49,7 +49,7 @@ html(lang='en')
       var token = $('#token').val();
       
       $.ajaxPrefilter(function(options){
-        if(op.tions.beforeSend){
+        if(options.beforeSend){
           options.beforeSend = function(xhr){
             xhr.setRequestHeader('x-access-token', token);
           }
