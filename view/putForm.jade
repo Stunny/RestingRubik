@@ -46,8 +46,6 @@ html(lang='en')
         pre
           code(id='put_result', style='text-align:left;')
     script.
-      
-      
       function cleanPutForm() {
         $('#putID').val('');
         
@@ -64,7 +62,6 @@ html(lang='en')
         $form.find('input[name="in5"]').val('');
         $form.find('input[name="in5"]').prop('disabled', false);
       }
-      
       function setPutToCube(){
         var $form = $('#putForm');
         cleanPutForm();
@@ -78,11 +75,9 @@ html(lang='en')
         $form.find('input[name="in4"]').attr('placeholder', 'Tipo');
         $form.find('input[name="in5"]').prop('disabled', true);      
       }
-      
       function setPutToAlg(){
         var $form = $('#putForm');
         cleanPutForm();
-        
         $form.find('input[name="in1"]').prop('type', 'text');
         $form.find('input[name="in1"]').attr('placeholder', 'Nombre');
         $form.find('input[name="in2"]').prop('type', 'number');
@@ -94,11 +89,9 @@ html(lang='en')
         $form.find('input[name="in5"]').prop('type', 'text');
         $form.find('input[name="in5"]').attr('placeholder', 'Tipo');
       }
-      
       function setPutToGuide(){
         var $form = $('#putForm');
         cleanPutForm();
-        
         $form.find('input[name="in1"]').prop('type', 'text');
         $form.find('input[name="in1"]').attr('placeholder', 'Cubo');
         $form.find('input[name="in2"]').prop('type', 'text');
@@ -111,14 +104,11 @@ html(lang='en')
         $form.find('input[name="in5"]').attr('placeholder', 'Formato');
       }
       
-      var token = $('#token').val();
-      
+      var token = $('#token').val(),
+          putType;
       $.ajaxSetup({
         headers: {'x-access-token' : token}
       });
-      
-      var putType;
-      
       $('#getForm').submit(function(event){
         console.log(token);
         event.preventDefault();
@@ -213,9 +203,7 @@ html(lang='en')
           default:
             putData = {};
             break;
-          
         }
-        
         putting = $.ajax({
           async: true,
           url   :link,
@@ -223,7 +211,6 @@ html(lang='en')
           data  : JSON.stringify(putData),
           contentType: "application/json"
         });
-        
         putting.done(function(resData, textStatus){
                   if($('#put_result').hasClass()) $('#put_result').removeAttr('class');
                   console.log(resData);
@@ -235,5 +222,4 @@ html(lang='en')
         putting.fail(function(jqxhr, textStatus, errorThrown){
                   console.log(textStatus, errorThrown);
                 });
-        
       });
