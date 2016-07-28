@@ -1,9 +1,10 @@
 module.exports = function(req, res, token, next, app){
-  var jwt = require('jsonwebtoken');
+  var jwt = require('jsonwebtoken'),
+      conf = require('../config');
 
   if(token){
     // Verificamos el JWT enviado con la clave del sistema
-    jwt.verify(token, app.get('secret'), function(err, decoded){
+    jwt.verify(token, config.secret, function(err, decoded){
       if(err){
         return res.send(JSON.stringify({msg : 'Token unauthenticated', success : false}));
       }
