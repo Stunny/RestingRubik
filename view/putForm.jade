@@ -46,6 +46,8 @@ html(lang='en')
         pre
           code(id='put_result', style='text-align:left;')
     script.
+      
+      //Start the script
       function cleanPutForm() {
         $('#putID').val('');
         
@@ -104,12 +106,13 @@ html(lang='en')
         $form.find('input[name="in5"]').attr('placeholder', 'Formato');
       }
       
-      var token = $('#token').val(),
-          putType;
+      var putType;
       $.ajaxSetup({
         headers: {'x-access-token' : token}
       });
       $('#getForm').submit(function(event){
+        
+        var token = $('#token').val();
         console.log(token);
         event.preventDefault();
         
@@ -157,7 +160,8 @@ html(lang='en')
         
       });
       $('#putForm').submit(function(event){
-        
+        var token = $('#token').val();
+
         event.preventDefault();
         
         var link = $('#back').attr('href')+'api/'+putType,
