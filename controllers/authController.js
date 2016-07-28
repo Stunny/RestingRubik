@@ -9,16 +9,16 @@ module.exports = function(req, res){
     if(err) throw err;
 
     if(!user){
-      res.status(401);
+      res.status(404);
       res.send(JSON.stringify({
-        msg : 'Unauthorized',
-        status : 401
+        msg : 'Unauthorized, user not found',
+        status : 404
       }));
     } else if(user){
       if(user.password != conf.hashCode(JSON.stringify(req.body.password))){
         res.status(401);
         res.send(JSON.stringify({
-          msg : 'Unauthorized',
+          msg : 'Unauthorized, wrong password',
           status : 401
         }));
       }else{
