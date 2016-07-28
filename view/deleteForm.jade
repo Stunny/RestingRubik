@@ -37,11 +37,18 @@ html(lang='en')
           code(id='delete_result')
     script.
       
-      var deleteType,
-          token = $('#token').val();
+      //Start the script
+      
+      var deleteType;
       
       $('#getForm').submit(function(event){
         
+        var token = $('#token').val();
+        
+        $.ajaxSetup({
+          headers: {'x-access-token' : token}
+        });
+
         event.preventDefault();
         
         var link = $('#back').attr('href')+'api/',
@@ -66,7 +73,6 @@ html(lang='en')
           async : true,
           type : 'get',
           url: link,
-          beforeSend: function(xhr){xhr.setRequestHeader('x-access-token', token);}
         });
         
         get.done(function(elmts, textStatus){
@@ -96,7 +102,6 @@ html(lang='en')
         var deleting = $.ajax({
           async:   true,
           url:     link,
-          beforeSend: function(xhr){xhr.setRequestHeader('x-access-token', token);},
           type:    'delete'
         });
         
