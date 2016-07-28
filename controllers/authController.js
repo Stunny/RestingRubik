@@ -15,7 +15,7 @@ module.exports = function(req, res){
         status : 404
       }));
     } else if(user){
-      if(user.password != conf.hashCode(JSON.stringify(req.body.password))){
+      if(user.password != conf.hashCode(req.body.password)){
         res.status(401);
         res.send(JSON.stringify({
           msg : 'Unauthorized, wrong password',
