@@ -107,10 +107,12 @@ html(lang='en')
       }
       
       var putType;
-      $.ajaxSetup({
-        headers: {'x-access-token' : token}
-      });
+      
       $('#getForm').submit(function(event){
+        
+        $.ajaxSetup({
+          headers: {'x-access-token' : token}
+        });
         
         var token = $('#token').val();
         console.log(token);
