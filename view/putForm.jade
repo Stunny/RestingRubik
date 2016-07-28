@@ -110,11 +110,12 @@ html(lang='en')
       
       $('#getForm').submit(function(event){
         
+        var token = $('#token').val();
+        
         $.ajaxSetup({
           headers: {'x-access-token' : token}
         });
         
-        var token = $('#token').val();
         console.log(token);
         event.preventDefault();
         
