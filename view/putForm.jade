@@ -47,7 +47,16 @@ html(lang='en')
           code(id='put_result', style='text-align:left;')
     script.
       var token = $('#token').val();
-            
+      
+      $.ajaxPrefilter(function(options){
+        if(options.beforeSend){
+          options.beforeSend = function(xhr){
+            xhr.setRequestHeader('x-access-token', token, false);
+          }
+        }
+      });
+      
+      
       function cleanPutForm() {
         $('#putID').val('');
         
@@ -141,7 +150,7 @@ html(lang='en')
         var get = $.ajax({
           async : true,
           type : 'get',
-          url: link+'?token='+token,
+          url: link,
         });
         
         get.done(function(elmts, textStatus){
@@ -212,7 +221,7 @@ html(lang='en')
         
         putting = $.ajax({
           async: true,
-          url   :link+'?token='+token,
+          url   :link,
           type  :'put',
           data  : JSON.stringify(putData),
           contentType: "application/json"
