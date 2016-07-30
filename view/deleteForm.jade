@@ -1,0 +1,38 @@
+doctype html
+html(lang='en')
+  head
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
+    meta(charset='utf-8')
+    style(media="screen").
+      input{
+        margin : 5px
+      }
+    title RestingRubik - Delete Form
+  body
+    a(href=serveraddress, id='back') Index
+    input(type='text', id='token', placeholder='API Token')
+    h1 Delete Form
+    div(class'getFrame', style='width:50%; height:80%; float:left;')
+      form(id='getForm')
+        input(type='radio', name='get', value='radioC')
+        | Cube
+        input(type='radio', name='get', value='radioA')
+        | Algorithm
+        input(type='radio', name='get', value='radioG')
+        | Guide
+        input(type='submit', value='GET', style='margin-left: 5px;')
+      div(id='getter', style='height:500px; overflow:auto; margin-top:10px;')
+        pre
+          code(id='get_body')
+    div(class='deleteFrame', style='width:45%; float:left; text-align:center; padding-left:5px;')
+      h2(style='margin:0') Delete Element
+      form(id='deleteForm')
+        input(type='text', id='deleteID', placeholder='Element ID', style='margin-top:10px; margin-bottom:5px;')
+        br
+        input(type='submit')
+      div(id='deleter', style='text-align:left;')
+        pre
+          code(id='delete_result')
+    script(src=serveraddress+'public/scripts/deleteForm.js')

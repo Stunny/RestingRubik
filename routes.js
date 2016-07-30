@@ -1,39 +1,60 @@
-module.exports = function(app){
+module.exports = function(app, apiRoutes){
 
 	//---FORMULARIS---//
 	var formsController = require('./controllers/formsController');
-
-		app.get('/', formsController.indice);
+	var setup = require('./controllers/setup');
+		app.get('/index', formsController.indice);
 		app.get('/moarcubes', formsController.cubeForm);
 		app.get('/moarguides', formsController.guideForm);
 		app.get('/moaralgs', formsController.algForm);
-
 		app.get('/putForm', formsController.putForm);
+		app.get('/deleteForm', formsController.deleteForm);
+
+		app.get('/register', formsController.registerForm);
+		app.post('/register', require('./controllers/registerController'));
+		app.get('/setup', setup);
 
 	//---API---//
 	var cubeController = require('./controllers/cubeController');
 	var algController = require('./controllers/algController');
 	var guideController = require('./controllers/guideController');
 
+	//---*SEGURIDAD API*---//
+
+		apiRoutes.use(function(req, res, next){
+			// S'intenta aconseguir el JWT de les tres formes possibles
+			var token = req.body.token || req.query.token || req.headers['x-access-token'];
+			require('./controllers/tokenVerifier')(req, res, token, next, app);
+		});
+
+	//---*RUTAS*---//
+
+		apiRoutes.get('/',function(req, res){
+			res.status(200);
+			res.send(JSON.stringify({msg : 'Welcome to RestingRubik API'}));
+		});
+
+		app.post('/apiauth', require('./controllers/authController')); //Si lo pongo por las rutas de la api no deja utenticar
+
 		//--Metodos de la ruta '/cube'
-		app.get('/api/cube', cubeController.getAllCubes);
-		app.get('/api/cube/:id', cubeController.getCubeByID);
-		app.post('/api/cube', cubeController.addCubo);
-		app.put('/api/cube/:id', cubeController.updateCube);
-		app.delete('/api/cube/:id', cubeController.deleteCube);
+		apiRoutes.get('/cube', cubeController.getAllCubes);
+		apiRoutes.get('/cube/:id', cubeController.getCubeByID);
+		apiRoutes.post('/cube', cubeController.addCubo);
+		apiRoutes.put('/cube/:id', cubeController.updateCube);
+		apiRoutes.delete('/cube/:id', cubeController.deleteCube);
 
 		//--Metodos de la ruta '/algorithm'
-		app.get('/api/alg', algController.getAllAlgtms);
-		app.get('/api/alg/:id', algController.getAlgByID);
-		app.post('/api/alg', algController.addAlgtm);
-		app.put('/api/alg/:id', algController.updateAlgtm);
-		app.delete('/api/alg/:id', algController.deleteAlgtm);
+		apiRoutes.get('/alg', algController.getAllAlgtms);
+		apiRoutes.get('/alg/:id', algController.getAlgByID);
+		apiRoutes.post('/alg', algController.addAlgtm);
+		apiRoutes.put('/alg/:id', algController.updateAlgtm);
+		apiRoutes.delete('/alg/:id', algController.deleteAlgtm);
 
 		//--Metodos de la ruta '/guide'
-		app.get('/api/guide', guideController.getAllGuides);
-		app.get('/api/guide/:id', guideController.getGuideById);
-		app.post('/api/guide', guideController.addGuide);
-		app.put('/api/guide/:id', guideController.updateGuide);
-		app.delete('/api/guide/:id', guideController.deleteGuide);
+		apiRoutes.get('/guide', guideController.getAllGuides);
+		apiRoutes.get('/guide/:id', guideController.getGuideById);
+		apiRoutes.post('/guide', guideController.addGuide);
+		apiRoutes.put('/guide/:id', guideController.updateGuide);
+		apiRoutes.delete('/guide/:id', guideController.deleteGuide);
 
 }

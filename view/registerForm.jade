@@ -1,0 +1,28 @@
+doctype html
+html(lang='en')
+  head
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
+    meta(charset='utf-8')   
+    title RestingRubik - Register
+    style(media="screen").
+      input{
+        margin-bottom : 5px
+      }
+  body
+    a(href=serveraddress, id='back') Index
+    h1(style='margin:10px') RestingRubik - User Register
+    div(id='registerArea', style='width:50%; float: left')
+      form(id='regForm')
+        input(type='text', id='user_name', placeholder='User Name')
+        br
+        input(type='password', id='user_psswd', placeholder='Password')
+        br
+        input(type='password', id='psswd2', placeholder='Repeat Password')
+        br
+        input(type='submit', value='Submit')
+    div(id='resultArea', style='width:45%; float: left; margin:20px;')
+      pre
+        code(id='reg_result')
+  script(src=serveraddress+'public/scripts/registerForm.js')

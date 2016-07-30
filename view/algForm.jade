@@ -6,6 +6,10 @@ html(lang='es')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
     meta(charset='utf-8')
     title RestingRubik - Alg Form
+    style(media="screen").
+      input{
+        margin : 5px
+      }
   body
     a(href=serveraddress) Index
     h1 Algorithm Form
@@ -18,42 +22,10 @@ html(lang='es')
         option(selected, value='Permutation') Permutation
         option(value='Orientation') Orientation
         option(value='Conmutator') Conmutator
+        br
+      input(type='text', id='token', placeholder='API Token')
       input(type='submit', value='POST')
     br
     pre
       code(id='result_body')
-    script.
-      $('#addAlg').submit(function(event){
-        
-        event.preventDefault();
-        
-        var $form = $(this),
-            nom   = $form.find('input[name="nombre"]').val(),
-            nummv = $form.find('input[name="moves_number"]').val(),
-            moves = $form.find('input[name="moves"]').val(),
-            appl2 = $form.find('input[name="applies_to"]').val(),
-            tipo  = $form.find('select[name="kind"]').val(),
-            
-            url   = $form.attr('action');
-            
-        var send = $.post(url, {
-          nombre         :nom,
-          moves_number   :nummv,
-          moves          :moves,
-          applies_to     :appl2,
-          kind           :tipo
-        }, "application/json");
-        
-        send.done(function(alg, textStatus){
-          if($('#result_body').hasClass()) $('#result_body').removeAttr('class');
-          console.log(alg);
-          console.log(textStatus);
-          $('#result_body').addClass('json');
-          $('#result_body').text(JSON.stringify(alg, null, "\t"));
-          hljs.highlightBlock($('#result_body').get(0));
-        });
-        
-        send.fail(function(jqxhr, textStatus, errorThrown){
-          console.log(textStatus, errorThrown, errorThrown.msg);
-        });
-      });
+    script(src=serveraddress+'public/scripts/algForm.js')

@@ -1,4 +1,11 @@
-//---Enviara la pagina de formulari addient a la ruta introduida
+module.exports.registerForm = function(req, res){
+  var server = require('../constants').SERVER_ADDRESS;
+  try{
+    res.render('registerForm', {serveraddress : server});
+  }catch(err){
+    res.status(500);
+  }
+};
 module.exports.indice = function(req, res){
   var server = require('../constants').SERVER_ADDRESS;
   try{
@@ -38,4 +45,12 @@ module.exports.putForm = function(req, res){
   }catch(err){
     res.status(500);
   }
-}
+};
+module.exports.deleteForm = function(req, res){
+  var server = require('../constants').SERVER_ADDRESS;
+  try{
+    res.render('deleteForm', {serveraddress : server});
+  }catch(err){
+    res.status(500);
+  }
+};
