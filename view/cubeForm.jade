@@ -45,7 +45,7 @@ html(lang='es')
             headers : {'x-access-token' : token}
           });
           //Envio los valores a la api
-          var send = $.post({
+          var send = $.post(url,{
             nombre : nom,
             brand  : marca,
             capas  : layers,

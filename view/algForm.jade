@@ -46,7 +46,7 @@ html(lang='es')
         $.ajaxSetup({
           headers : {'x-access-token' : token}
         });
-        var send = $.post({
+        var send = $.post(url,{
           nombre         :nom,
           moves_number   :nummv,
           moves          :moves,

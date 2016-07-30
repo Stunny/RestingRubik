@@ -41,7 +41,7 @@ html(lang='es')
         $.ajaxSetup({
           headers : {'x-access-token' : token}
         });
-        var send = $.post({
+        var send = $.post(link,{
           cube     :cubo,
           author   :autor,
           url      :link,
