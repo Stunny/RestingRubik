@@ -114,9 +114,9 @@
 	//DELETE---ELIMINAR REGISTRO
 	module.exports.deleteCube = function(req,res){
 		var Cube = require('../models/cube');
+		var cId = req.params.id;
 		try{
-			Cube.findById(req.params.id, function(err,cube){
-				cube.remove(function(err){
+			Cube.findOneAndRemove({_id : cId}, function(err,cube){
 					if(!err){
 						console.log('Cubo eliminado.');
 						res.status(200);
@@ -126,7 +126,6 @@
 						res.status(404);
 						res.send('{"status":"404","msg":"not_found"}');
 					}
-				});
 			});
 		}catch(err){
 			res.status(404);

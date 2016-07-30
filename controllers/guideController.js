@@ -114,9 +114,9 @@ module.exports.updateGuide = function(req,res){
 //---DELETE
 module.exports.deleteGuide = function(req,res){
   var Guide = require('../models/guide');
+  var gId = req.params.id;
   try{
-    Guide.findById(req.params.id, function(err, guide){
-      guide.remove(function(err){
+    Guide.findOneAndRemove({_id : gId}, function(err, guide){
         if(!err){
           console.log('Guia eliminada.');
           res.setHeader('content-type', 'application/json');
@@ -127,7 +127,6 @@ module.exports.deleteGuide = function(req,res){
           res.setHeader('content-type', 'application/json');
           res.send('{"status":"400","msg":"bad_request"}');
         }
-      });
     });
   }catch(err){
     res.status(404);

@@ -113,9 +113,9 @@ module.exports.updateAlgtm = function(req, res){
 //DELETE---Eliminar Algoritmo
 module.exports.deleteAlgtm = function(req, res){
   var Algtm = require('../models/algorithm');
+  var algId = req.params.id;
   try{
-    Algtm.findById(req.params.id, function(err, alg){
-      alg.remove(function(err){
+    Algtm.findOneAndRemove({_id : algId}, function(err, alg){
         if(!err){
           console.log('Algoritmo eliminado');
           res.status(200);
@@ -127,7 +127,6 @@ module.exports.deleteAlgtm = function(req, res){
           res.setHeader('content-type', 'application/json');
           res.send('{"status":"404","msg":"not_found"}');
         }
-      });
     });
   }catch(err){
     res.status(500);
