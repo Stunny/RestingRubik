@@ -96,7 +96,7 @@ html(lang='en')
         event.preventDefault();
         
         var form = $(this),
-            elmtID = form.find('input[id="deleteID"]'),
+            elmtID = form.find('input[id="deleteID"]').val(),
             link = $('#back').attr('href') + 'api/' + deleteType+'/'+elmtID;
         
         var deleting = $.ajax({
