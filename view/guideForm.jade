@@ -35,23 +35,19 @@ html(lang='es')
             formato  = $form.find('select[name="format"]').val(),
             
             postLink = $form.attr('action'),
-            token = $('#token').val(),
-            postData = {
-              cube     :cubo,
-              author   :autor,
-              url      :link,
-              parts    :partes,
-              format   :formato
-            };
+            token = $('#token').val();
             
-        var send = $.ajax({
-          data: postData,
-          contentType: 'application/json'
-          async: true,
-          type: 'post',
-          url: link,
-          beforeSend: function(xhr){xhr.setRequestHeader('x-access-token', token);}
+            
+        $.ajaxSetup({
+          headers : {'x-access-token' : token}
         });
+        var send = $.post({
+          cube     :cubo,
+          author   :autor,
+          url      :link,
+          parts    :partes,
+          format   :formato
+        }, "application/json");
         
         send.done(function(guide, textStatus){
           if($('#result_body').hasClass()) $('#result_body').removeAttr('class');
