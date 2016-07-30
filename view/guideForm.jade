@@ -45,7 +45,8 @@ html(lang='es')
             };
             
         var send = $.ajax({
-          data: JSON.stringify(postData),
+          data: postData,
+          contentType: 'application/json'
           async: true,
           type: 'post',
           url: link,

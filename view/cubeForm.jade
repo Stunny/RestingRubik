@@ -46,7 +46,8 @@ html(lang='es')
           
           //Envio los valores a la api
           var send = $.ajax({
-            data: JSON.stringify(postData),
+            data: postData,
+            contentType : 'application/json',
             async: true,
             type: 'post',
             url : url,

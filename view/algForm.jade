@@ -55,7 +55,8 @@ html(lang='es')
           async : true,
           type: 'post',
           url: url,
-          data: JSON.stringify(postData),
+          data: postData,
+          contentType : 'application/json'
           beforeSend: function(xhr){xhr.setRequestHeader('x-access-token', token);}
         });
         
