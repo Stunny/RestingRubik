@@ -72,7 +72,7 @@ $('#deleteForm').submit(function(event){
             console.log(textStatus);
             $('#delete_result').addClass('json');
             $('#delete_result').text(JSON.stringify(resData, null, "\t"));
-            hljs.highlightBlock($('#put_result').get(0));
+            hljs.highlightBlock($('#delete_result').get(0));
           });
   deleting.fail(function(jqxhr, textStatus, errorThrown){
             console.log(textStatus, errorThrown);
