@@ -36,7 +36,7 @@ mongoose.connect(config.dataBase, function(err,res){
 
 //---Proves per a depuracio
 app.get('/', function(req, res){
-	res.render('index', {serveraddress : config.SERVER_ADDRESS});
+	res.render('index', {serveraddress : require('./constants').SERVER_ADDRESS});
 });
 app.post('/', function(req, res){
 	res.status(200).send(req.body);
