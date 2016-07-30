@@ -54,3 +54,11 @@ module.exports.deleteForm = function(req, res){
     res.status(500);
   }
 };
+module.exports.loginForm = function(req,res){
+  var server = require('../constants').SERVER_ADDRESS;
+  try{
+    res.render('login', {serveraddress : server});
+  }catch(err){
+    res.status(500);
+  }
+}

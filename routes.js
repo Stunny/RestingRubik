@@ -12,6 +12,7 @@ module.exports = function(app, apiRoutes){
 
 		app.get('/register', formsController.registerForm);
 		app.post('/register', require('./controllers/registerController'));
+		app.get('/login', formsController.loginForm);
 		app.get('/setup', setup);
 
 	//---API---//

@@ -6,14 +6,16 @@ Con esta aplicación web se crea la posibilidad de aplicar la tecnología `RESTf
 ### Instalación
 Para poder utilizar esta aplicación web, el usuario deberá tener instalado [NodeJS](http://bit.ly/1LjG5AH) y el SGBD [MongoDB](http://bit.ly/1NL0pyD) en el servidor que se vaya a utilizar. Además, a continuación se especifican los paquetes necesarios para el correcto funcionamiento del software.
 ```json
-"dependencies" : {
-  "express" : "latest",
-  "mongoose" : "latest",
-  "body-parser":"^1.15.2",
-  "method-override":"^2.3.6",
-  "errorhandler":"^1.4.3",
-  "path":"^0.12.7",
-  "jade":"^1.11.0"
+"dependencies": {
+  "body-parser": "^1.15.2",
+  "errorhandler": "^1.4.3",
+  "express": "latest",
+  "jade": "^1.11.0",
+  "jsonwebtoken": "^7.1.6",
+  "method-override": "^2.3.6",
+  "mongoose": "latest",
+  "morgan": "^1.7.0",
+  "path": "^0.12.7"
 }
 ```
 En caso de haber clonado el repositorio directamente **_no hará falta_** instalar por separado los paquetes especificados en las dependencias. En caso contrario, bastará con ejecutar el comando `$npm install <paquete> --save` desde la terminal situada en la carpeta raíz de la aplicación.

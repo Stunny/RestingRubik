@@ -1,0 +1,27 @@
+doctype html
+html(lang='en')
+  head
+    link(rel='stylesheet', href='//cdn.bootcss.com/highlight.js/9.5.0/styles/darkula.min.css')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
+    meta(charset='utf-8')
+    title RestingRubik - Login
+    style(media="screen").
+      input{
+        margin : 5px
+      }
+  body
+    a(href=serveraddress+'index') Index
+    h1 Login/Authentication
+    br
+    div(id='loginWrapper', style='text-align:center;')
+      form(id='loginForm', action=serveraddress+'apiauth')
+        input(type='text', name='user', placeholder='User Name')
+        br
+        input(type='password', name='psswd', placeholder='Password')
+        br
+        input(type='submit', value='Authenticate')
+    div(id='result', style='margin-left: 33%;')
+      pre
+        code(id='login_result')
+    script(src=serveraddress+'public/script/loginForm.js')

@@ -4,7 +4,10 @@ html(lang='en')
     meta(charset='utf-8')    
     title RestingRubiks API
   body
-    h1 Welcome to the RestingRubik API     
+    h1 Welcome to the RestingRubik API
+    p Do you have your token? If not, please authenticate or register and then authenticate.
+    a(href=serveraddress+'register') Register
+    a(href=serveraddress+'login') Authenticate
     div(style='width:45%; margin:10px; float: left')
       h2 POST forms   
       ul
@@ -26,3 +29,6 @@ html(lang='en')
       h2 PUT
       li
         a(href=serveraddress+'putForm') Put form
+      h2 DELETE
+      li
+        a(href=serveraddres+'deleteForm') Delete form
