@@ -45,6 +45,7 @@ html(lang='es')
             };
             
         var send = $.ajax({
+          data: JSON.stringify(postData),
           async: true,
           type: 'post',
           url: link,
