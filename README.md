@@ -28,7 +28,25 @@ module.exports = Object.freeze({
   APP_PORT : 5000
 });
 ```
-Lo mismo aplicará al puerto `APP_PORT` que el usuario desee que escuche la aplicación.
+Lo mismo aplicará al puerto `APP_PORT` que el usuario desee que escuche la aplicación. <br>
+Además del módulo de constantes, también se dispone de un módulo de configuración de la aplicación en el que quedan definidos la dirección de conexión a la base de datos, la función de `hash` utilizada para almacenar las contraseñas de los usuarios, ya la clave utilizada para encriptar los `JWT` que fortalecen la seguridad de todo el sistema.
+```javascript
+module.exports = {
+  'secret' : 'cubopezlosabetodo',
+  'dataBase'  : 'mongodb://localhost/cube',
+  hashCode : function(pssw){    //Funcion de hash para almacenar las contraseñas de los usuarios
+    var hash = 0, i, chr, len;
+    if (pssw.length === 0) return hash;
+    for (i = 0, len = pssw.length; i < len; i++) {
+      chr   = pssw.charCodeAt(i);
+      hash  = ((hash << 5) - hash) + chr;
+      hash |= 0;
+    }
+    return hash;
+  }
+}
+
+```
 
 ### Ejecución y funcionamiento
 Una vez terminados los preparativos de la aplicación, para ejecutarla bastará con utilizar el comando `$node server.js` desde la terminal situada en la carpeta raíz. De esta manera la aplicación empezará la escucha al puerto especificado (se recuerda que las aplicaciones desarrolladas con la tecnología NodeJS no se basan en hilos de ejecución sino en eventos disparados por la escucha de peticiones).
@@ -38,4 +56,7 @@ Una vez terminados los preparativos de la aplicación, para ejecutarla bastará 
 - Cuando se lleven a cabo peticiones de tipo `DELETE`, la respuesta, tanto en caso satisfactorio como en erróneo, tendrá el mismo formato. Un objeto _JSON_ con un atributo `"status"` y un atributo `"msg"`, los cuales indicarán el estado de la petición.
 
 ### Uso
-La aplicación incluye rutas para el consumo de la _API_ desde el navegador. De todas maneras, se recomienda el uso de programas cliente orientados a peticion y respuesta _HTTP_ para las comprobaciones de funcionamiento de todos los _verbos_.
+Para empezar a poder utilizar la aplicación, una vez instalada y en ejecución, el usuario deberá registrarse en la base de datos. Una vez hecho el registro, éste deberá acceder a la ruta de autenticación y obtener su `JWT`. A partir de entonces, una vez obtenido su token, podrá operar libremente hasta que éste expire, momento en el que deberá volver a realizar la autenticación. Por defecto, los tokens tienen un tiempo de vida de 24h. Esto puede ser modificado desde el archivo `authController.js`, en la propiedad `expiresIn` de la firma. <br>
+En el índice de la aplicación, el usuario podrá encontrar los enlaces a los diferentes formularios de consumición de la API. En cada uno de ellos primero deberá hacerse una petición `GET` para que se configure correctamente la petición que quiera hacerse, ya sea de actualización o de borrado. Esto último no aplica a los formularios de creación. En estos lo único que es estrictamente requerido (como en todas las demás rutas) es el token de acceso. <br>
+### Uso desde aplicaciones externas
+Si se va a consumir la API desde aplicaciones externas, lo más recomendado es que el token de acceso se envíe como contenido de una cabecera HTTP con el nombre `x-access-token`. Esto facilitará el reconocimeinto del usuario, además de incrementar la seguridad, ya que no se está intruduciendo el token en ningún formulario o dirección URL.
