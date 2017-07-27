@@ -1,7 +1,11 @@
-{
+or{
   "name": "RestingRubik",
-  "author": "Alex Vogel Martinez",
-  "version": "v1.0.1",
+  "authors":{
+    "author":"Javier Ortiz Casadejus",
+    "author":"David González",
+    "author":"Alex Vogel Martinez"
+  },
+  "version": "v2.0",
   "description": "Restful API for Rubik's cube type puzzles algorithms",
   "main": "server.js",
   "private": true,
