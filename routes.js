@@ -19,6 +19,7 @@ module.exports = function(app, apiRoutes){
 	var cubeController = require('./controllers/cubeController');
 	var algController = require('./controllers/algController');
 	var guideController = require('./controllers/guideController');
+	var brandController = require('./controllers/brandController');
 
 	//---*SEGURIDAD API*---//
 
