@@ -28,6 +28,10 @@ $('#getForm').submit(function(event){
     link = link +'guide'
     deleteType = 'guide';
   }
+  if(checked == 'radioB'){
+    link = link + 'brand';
+    deleteType = 'brand';
+  }
 
   //var get = $.get(link, {token : token}, "application/json");
   var get = $.ajax({

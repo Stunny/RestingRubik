@@ -58,7 +58,7 @@ module.exports.addBrand = function(req, res){
       web		  : req.body.web
     });
 
-    cubo.save(function(err){
+    brand.save(function(err){
       if(!err){
         console.log('Nueva marca guardado.');
         res.setHeader('content-type', 'application/json');
@@ -84,14 +84,14 @@ module.exports.updateBrand = function(req,res){
   try{
     console.log(req.body);
 
-    Brand.findById(req.params.id, function(err, cube){
+    Brand.findById(req.params.id, function(err, brand){
       brand.nombre 	= req.body.nombre;
       brand.pais 		= req.body.pais;
       brand.web 		= req.body.web;
 
-      cube.save(function(err){
+      brand.save(function(err){
         if(!err){
-          console.log('Cubo actualizado.');
+          console.log('Marca actualizada');
           res.setHeader('content-type', 'application/json');
           res.status(200);
           res.send(JSON.stringify(brand));
@@ -115,7 +115,7 @@ module.exports.deleteBrand = function(req,res){
   var Brand = require('../models/brand');
   var bId = req.params.id;
   try{
-    Cube.findOneAndRemove({_id : bId}, function(err,cube){
+    Brand.findOneAndRemove({_id : bId}, function(err,cube){
         if(!err){
           console.log('Marca borrada.');
           res.status(200);

@@ -1,0 +1,22 @@
+doctype html
+html(lang='es')
+  head
+    link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.9.1/styles/default.min.css')
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.5.0/highlight.min.js')
+    meta(charset='utf-8')   
+    title RestingRubik - Cube Form  
+  body
+    a(href=serveraddress) Index    
+    h1 Cube Form   
+    form(id='addbrand', enctype='application/json', method='post', action=serveraddress+'api/brand')
+      input(type='text', name='nombre', placeholder='Nombre')
+      input(type='text', name='pais', placeholder='Pais')
+      input(type='text', name='web', placeholder='Página web')
+      
+      input(type='text', id='token', placeholder='API Token')
+      input(type='submit', value='POST')
+    br
+    pre
+      code(id='result_body')
+    script(src=serveraddress+'public/scripts/brandForm.js')

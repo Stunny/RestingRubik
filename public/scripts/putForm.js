@@ -56,6 +56,18 @@ function setPutToGuide(){
   $form.find('input[name="in5"]').prop('type', 'text');
   $form.find('input[name="in5"]').attr('placeholder', 'Formato');
 }
+function setPutToBrand(){
+  var $form = $('#putForm');
+  cleanPutForm();
+  $form.find('input[name="in1"]').prop('type', 'text');
+  $form.find('input[name="in1"]').attr('placeholder', 'Nombre');
+  $form.find('input[name="in2"]').prop('type', 'text');
+  $form.find('input[name="in2"]').attr('placeholder', 'País');
+  $form.find('input[name="in3"]').prop('type', 'text');
+  $form.find('input[name="in3"]').attr('placeholder', 'Sitio web');
+  $form.find('input[name="in4"]').prop('disabled', true);
+  $form.find('input[name="in5"]').prop('disabled', true);
+}
 
 var putType;
 
@@ -88,6 +100,11 @@ $('#getForm').submit(function(event){
     link = link +'guide'
     putType = 'guide';
     setPutToGuide();
+  }
+  if(checked == 'radioB'){
+    link = link + 'brand';
+    putType = 'brand';
+    setPutToBrand();
   }
 
   //var get = $.get(link, {token: token}, "application/json");
@@ -158,6 +175,12 @@ $('#putForm').submit(function(event){
         format   : in5
       };
       break;
+    case 'brand':
+    putData = {
+      nombre     : in1,
+      pais       : in2,
+      web        : in3
+    };
     default:
       putData = {};
       break;
