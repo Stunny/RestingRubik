@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
 
 var cube = new Schema({
 	nombre  : String,
-	brand		:String,
+	brand		: String,
 	capas		: String,
 	kind		: {
 		type	: String,
