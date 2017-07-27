@@ -58,4 +58,11 @@ module.exports = function(app, apiRoutes){
 		apiRoutes.put('/guide/:id', guideController.updateGuide);
 		apiRoutes.delete('/guide/:id', guideController.deleteGuide);
 
+		//--Metodos de la ruta '/brand'
+		apiRoutes.get('/brand',);
+		apiRoutes.get('/brand/:id',);
+		apiRoutes.post('/brand',);
+		apiRoutes.put('/brand/:id');
+		apiRoutes.delete('/brand/:id');
+
 }
