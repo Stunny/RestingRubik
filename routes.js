@@ -59,10 +59,10 @@ module.exports = function(app, apiRoutes){
 		apiRoutes.delete('/guide/:id', guideController.deleteGuide);
 
 		//--Metodos de la ruta '/brand'
-		apiRoutes.get('/brand',);
-		apiRoutes.get('/brand/:id',);
-		apiRoutes.post('/brand',);
-		apiRoutes.put('/brand/:id');
-		apiRoutes.delete('/brand/:id');
+		apiRoutes.get('/brand', brandController.getAllBrand);
+		apiRoutes.get('/brand/:id', brandController.getBrandID);
+		apiRoutes.post('/brand', brandController.addBrand);
+		apiRoutes.put('/brand/:id', brandController.updateBrand);
+		apiRoutes.delete('/brand/:id', brandController.deleteBrand);
 
 }
