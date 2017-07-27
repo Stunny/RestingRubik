@@ -7,6 +7,7 @@ module.exports = function(app, apiRoutes){
 		app.get('/moarcubes', formsController.cubeForm);
 		app.get('/moarguides', formsController.guideForm);
 		app.get('/moaralgs', formsController.algForm);
+		app.get('/moarbrands', formsController.brandForm);
 		app.get('/putForm', formsController.putForm);
 		app.get('/deleteForm', formsController.deleteForm);
 

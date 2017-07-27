@@ -38,6 +38,16 @@ module.exports.guideForm = function(req, res){
     res.status(500);
   }
 };
+
+module.exports.brandForm = function(req, res) {
+  var server = require('../constants').SERVER_ADDRESS;
+  try{
+    res.render('brandForm',{serveraddress : server});
+  }catch(err){
+    res.status(500);
+  }
+}
+
 module.exports.putForm = function(req, res){
   var server = require('../constants').SERVER_ADDRESS;
   try{
