@@ -24,7 +24,7 @@ En caso de haber clonado el repositorio directamente **_no hará falta_** instal
 La aplicación ha sido desarrollada en un entorno de cliente-servidor separados, por lo que para poder ejecutar correctamente el software, el usuario deberá editar el módulo `constants.js`, situado en la carpeta raíz de la aplicación, cambiando el parámetro `SERVER_ADDRESS`, correspondiente a la dirección IP del servidor desde el que se vaya a ejecutar.
 ```javascript
 module.exports = Object.freeze({
-  SERVER_ADDRESS : 'http://192.168.1.100:5000/',
+  SERVER_ADDRESS : 'http://localhost:5000/',
   APP_PORT : 5000
 });
 ```
@@ -49,7 +49,7 @@ module.exports = {
 ```
 
 ### Ejecución y funcionamiento
-Una vez terminados los preparativos de la aplicación, para ejecutarla bastará con utilizar el comando `$node server.js` desde la terminal situada en la carpeta raíz. De esta manera la aplicación empezará la escucha al puerto especificado (se recuerda que las aplicaciones desarrolladas con la tecnología NodeJS no se basan en hilos de ejecución sino en eventos disparados por la escucha de peticiones).
+Una vez terminados los preparativos de la aplicación, para ejecutarla bastará con utilizar el comando `$nodejs server.js` desde la terminal situada en la carpeta raíz. De esta manera la aplicación empezará la escucha al puerto especificado (se recuerda que las aplicaciones desarrolladas con la tecnología NodeJS no se basan en hilos de ejecución sino en eventos disparados por la escucha de peticiones).
 
 - Cuando se lleven a cabo peticiones de tipo `GET`, en caso de ejecución satisfactoria, el unico _output_ que recibirá el usuario será el conjunto de objetos representados en `JSON`, en el cuerpo de la respuesta. En caso contrario, la aplicación entera está protegida contra excepciones, lo cual evitará la detención inmediata de la ejecución.
 - Cuando se lleven a cabo peticiones de tipo `POST` y `PUT`, en caso de ejecución satisfactoria de la petición, la respuesta será: el nuevo objeto introducido en caso de `POST` y el objeto con los valores de sus atributos modificados en caso de `PUT`.
