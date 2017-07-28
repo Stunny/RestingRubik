@@ -11,6 +11,7 @@ function cleanPutForm() {
   $form.find('input[name="in3"]').val('');
   $form.find('input[name="in4"]').removeAttr('placeholder');
   $form.find('input[name="in4"]').val('');
+  $form.find('input[name="in4"]').prop('disabled', false);
   $form.find('input[name="in5"]').removeAttr('placeholder');
   $form.find('input[name="in5"]').val('');
   $form.find('input[name="in5"]').prop('disabled', false);
