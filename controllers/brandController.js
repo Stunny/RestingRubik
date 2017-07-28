@@ -1,7 +1,7 @@
 //GET --- Todas las marcas
 
 module.exports.getAllBrand = function (req, res){
-  var Brand = require ('../model/brand');
+  var Brand = require ('../models/brand');
   try {
     Brand.find(function(err, brands){
       if(!err){

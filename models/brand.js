@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-var brand = new Scheman ({
+var brand = new Schema ({
 
   nombre : String,
   pais   : String,
