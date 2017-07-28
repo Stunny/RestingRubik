@@ -29,3 +29,51 @@ html(lang='en')
       h2 DELETE
       li
         a(href=serveraddress+'deleteForm') Delete form
+        html
+  head
+  body
+    h3 Gu&iacute;a:
+    p
+      | Todos los m&eacute;todos funcionan con una api key, que se te da en el campo de autentificar.
+    p
+    p Register:
+    p
+    p(style='margin: 10 20', align='justify') Introduzca el nombre de usuario y la contrase&ntilde;a que desea para su cuenta.
+    p
+    p Authenticate:
+    p
+    p(style='margin: 10 20', align='justify')
+      | Introduzca el nombre y la contrase&ntilde;a de &eacute;l usuario y recibir&aacute;s un c&oacute;digo con el que te identificar&aacute;s en los dem&aacute;s procedimientos (API token).
+    p
+    p Post Cube:
+    p
+    p(style='margin: 10 20', align='justify')
+      | Nombre: nombre del cubo, Marca: marca de ese cubo, Capas: tama&ntilde;o del cubo: 3x3 ,4x4,9x9, etc&mldr;, Regular, Cuboid, Modification: tipo de cubo
+    p
+    p Post Guide:
+    p
+    p(style='margin: 10 20', align='justify')
+      | Cubo: nombre del cubo, Author: nombre del usuario, URL: url de la gu&iacute;a, Partes: n&uacute;mero de pasos de la gu&iacute;a, Si es video o blog.
+    p
+    p Algorithm Form:
+    p
+    p(style='margin: 10 20', align='justify')
+      | Nombre del algoritmo, Numero de movimientos que tiene el algoritmo, Todos los movimientos del algoritmo, donde se aplican, seguido del tipo de movimiento.
+    p
+    p Cube Form:
+    p
+    p(style='margin: 10 20', align='justify')
+      | Nombre del cubo, seguido de su pa&iacute;s y su p&aacute;gina web y por &uacute;ltimo el api token del usuario que quiera a&ntilde;adir este cubo.
+    p
+    p Put form:
+    p
+    p(style='margin: 10 20', align='justify')
+      | Primero hay que poner al lado del &iacute;ndex el api token del usuario que quieras obtener informaci&oacute;n.
+      | Despu&eacute;s seleccionas que tipo de informaci&oacute;n quieres obtener: los cubos, algoritmos, gu&iacute;as, o marcas que ha a&ntilde;adido el usuario del api token.
+      | En el bot&oacute;n get obtienes todos los elementos, del tipo seleccionado, de ese usuario que ha a&ntilde;adido.
+      | La tabla de la derecha sirve para cambiar los datos de un elemento rellenando los campos.
+    p
+    p Delete form:
+    p
+    p(style='margin: 10 20', align='justify')
+      | Funciona como el put form, pero en la derecha solo vemos un campo donde se debe de poner el id del elemento que se desea eliminar.
