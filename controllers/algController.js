@@ -47,7 +47,31 @@ module.exports.getAlgByID = function(req, res){
 //POST---AÑADIR ALG
 module.exports.addAlgtm = function(req, res){
   var Algtm = require('../models/algorithm');
+  var algExists = 0;
   console.log(req.body);
+
+  try{
+      Algtm.count({
+        nombre 	      : req.body.nombre,
+        moves_number 	: req.body.brand,
+        moves		      : req.body.capas,
+        applies_to    : req.body.applies_to,
+        kind 		      : req.body.kind
+        },
+        function(err, c){
+            algExists = c;
+        }
+      );
+  }catch(err){
+     console.log(err);
+  }
+
+  if(algExists > 0){
+    res.status(400);
+    res.setHeader('content-type', 'application/json');
+    res.send('{"status":"400","msg":"alg_already_exists"}');
+    return;
+  }
   try{
     var alg = new Algtm({
       nombre       : req.body.nombre,

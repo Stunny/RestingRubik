@@ -49,6 +49,29 @@ module.exports.getBrandID = function(req,res){
 //POST --- AÑADIR MARCA
 module.exports.addBrand = function(req, res){
   var Brand = require('../models/brand');
+  var brandExists = 0;
+
+  try{
+      Brand.count({
+        nombre 	: req.body.nombre,
+        pais 	  : req.body.pais,
+        web		  : req.body.web
+        },
+        function(err, c){
+            brandExists = c;
+        }
+      );
+  }catch(err){
+     console.log(err);
+  }
+
+  if(brandExists > 0){
+    res.status(400);
+    res.setHeader('content-type', 'application/json');
+    res.send('{"status":"400","msg":"brand_already_exists"}');
+    return;
+  }
+
   try{
     console.log(req.body);
 

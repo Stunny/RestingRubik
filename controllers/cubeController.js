@@ -49,7 +49,7 @@
 	module.exports.addCubo = function(req, res){
 		var Cube = require('../models/cube');
 		var Brand = require('../models/brand');
-		var brandExists = 0;
+		var brandExists = 0, cubeExists = 0;
 
 		try{
 			Brand.count({nombre: req.body.brand}, function(err, c) {
@@ -61,6 +61,29 @@
 			res.status(404);
 			res.setHeader('content-type', 'application/json');
 	    res.send('{"status":"404","msg":"brand_not_found"}');
+		}
+
+		try{
+				Cube.count({
+					nombre 	: req.body.nombre,
+				  brand 	: req.body.brand,
+				  capas		: req.body.capas,
+				  kind 		: req.body.kind
+					},
+
+					function(err, c){
+							cubeExists = c;
+					}
+				);
+		}catch(err){
+			 console.log(err);
+		}
+
+		if(cubeExists > 0){
+			res.status(400);
+			res.setHeader('content-type', 'application/json');
+			res.send('{"status":"400","msg":"cube_already_exists"}');
+			return;
 		}
 
 		if(brandExists > 0){

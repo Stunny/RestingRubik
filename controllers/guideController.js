@@ -47,6 +47,31 @@ module.exports.getGuideById = function(req, res){
 //---POST
 module.exports.addGuide = function(req, res){
   var Guide = require('../models/guide');
+  var guideExists = 0;
+
+  try{
+      Guide.count({
+        cube 	  : req.body.nombre,
+        author 	: req.body.brand,
+        url		  : req.body.capas,
+        parts 	: req.body.kind,
+        format  : req.body.format
+        },
+        function(err, c){
+            guideExists = c;
+        }
+      );
+  }catch(err){
+     console.log(err);
+  }
+
+  if(guideExists > 0){
+    res.status(400);
+    res.setHeader('content-type', 'application/json');
+    res.send('{"status":"400","msg":"guide_already_exists"}');
+    return;
+  }
+
   try{
     console.log(req.body);
 
