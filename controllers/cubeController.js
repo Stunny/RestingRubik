@@ -49,12 +49,64 @@
 	module.exports.addCubo = function(req, res){
 		var Cube = require('../models/cube');
 		var Brand = require('../models/brand');
-		var brandExists = 0, cubeExists = 0;
 
 		try{
 			Brand.count({nombre: req.body.brand}, function(err, c) {
 				if(!err){
-					brandExists = c;
+					if(c == 0){
+						res.status(200);
+						res.setHeader('content-type', 'application/json');
+						res.send('{"status":"404","msg":"brand_not_found"}');
+						return;
+					}
+					try{
+							Cube.count({
+								nombre 	: req.body.nombre,
+							  brand 	: req.body.brand,
+							  capas		: req.body.capas,
+							  kind 		: req.body.kind
+								},
+
+								function(err, c){
+									if(c > 0){
+										res.status(200);
+										res.setHeader('content-type', 'application/json');
+										res.send('{"status":"400","msg":"cube_already_exists"}');
+										return;
+									}
+									try{
+										console.log(req.body);
+
+										var cubo = new Cube({
+											nombre 	: req.body.nombre,
+											brand 	: req.body.brand,
+											capas		: req.body.capas,
+											kind 		: req.body.kind
+										});
+
+										cubo.save(function(err){
+											if(!err){
+												console.log('Nuevo cubo guardado.');
+												res.setHeader('content-type', 'application/json');
+												res.send(JSON.stringify(cubo));
+												res.status(200);
+											}else{
+												console.log('Error al guardar: '+err);
+												res.setHeader('content-type', 'application/json');
+												res.send('{"status":"400","msg":"bad_request"}');
+												res.status(200);
+											}
+										});
+									}catch(err){
+										res.status(200);
+										res.setHeader('content-type', 'application/json');
+										res.send('{"status":"500","msg":"internal_server_error"}');
+									}
+								}
+							);
+					}catch(err){
+						 console.log(err);
+					}
 				}
 			});
 		}catch(err){
@@ -63,63 +115,6 @@
 	    res.send('{"status":"404","msg":"brand_not_found"}');
 		}
 
-		try{
-				Cube.count({
-					nombre 	: req.body.nombre,
-				  brand 	: req.body.brand,
-				  capas		: req.body.capas,
-				  kind 		: req.body.kind
-					},
-
-					function(err, c){
-							cubeExists = c;
-					}
-				);
-		}catch(err){
-			 console.log(err);
-		}
-
-		if(cubeExists > 0){
-			res.status(400);
-			res.setHeader('content-type', 'application/json');
-			res.send('{"status":"400","msg":"cube_already_exists"}');
-			return;
-		}
-
-		if(brandExists > 0){
-			try{
-				console.log(req.body);
-
-				var cubo = new Cube({
-					nombre 	: req.body.nombre,
-					brand 	: req.body.brand,
-					capas		: req.body.capas,
-					kind 		: req.body.kind
-				});
-
-				cubo.save(function(err){
-					if(!err){
-						console.log('Nuevo cubo guardado.');
-						res.setHeader('content-type', 'application/json');
-						res.send(JSON.stringify(cubo));
-						res.status(200);
-					}else{
-						console.log('Error al guardar: '+err);
-						res.setHeader('content-type', 'application/json');
-						res.send('{"status":"400","msg":"bad_request"}');
-						res.status(400);
-					}
-				});
-			}catch(err){
-				res.status(500);
-				res.setHeader('content-type', 'application/json');
-				res.send('{"status":"500","msg":"internal_server_error"}');
-			}
-		} else{
-			res.status(500);
-			res.setHeader('content-type', 'application/json');
-			res.send('{"status":"404","msg":"brand_not_found"}');
-		}
 	};
 
 	//PUT---ACTUALIZAR INFO

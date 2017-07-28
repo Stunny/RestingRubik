@@ -58,47 +58,44 @@ module.exports.addGuide = function(req, res){
         format  : req.body.format
         },
         function(err, c){
-            guideExists = c;
+            if(c > 0){
+              res.status(400);
+              res.setHeader('content-type', 'application/json');
+              res.send('{"status":"400","msg":"guide_already_exists"}');
+              return;
+            }
+            try{
+              console.log(req.body);
+
+              var guide = new Guide({
+                cube    :req.body.cube,
+                author  :req.body.author,
+                url     :req.body.url,
+                parts   :req.body.parts,
+                format  :req.body.format
+              });
+              guide.save(function(err){
+                if(!err){
+                  console.log('Nueva guia guardada.');
+                  res.setHeader('content-type', 'application/json');
+                  res.status(200);
+                  res.send(JSON.stringify(guide));
+                }else{
+                  console.log('Error al guardar: '+err);
+                  res.setHeader('content-type', 'application/json');
+                  res.status(400);
+                  res.send('{"status":"400", "msg":"bad_request"}');
+                }
+              });
+            }catch(err){
+              res.status(500);
+              res.setHeader('content-type', 'application/json');
+              res.send('{"status":"500","msg":"internal_server_error"}');
+            }
         }
       );
   }catch(err){
      console.log(err);
-  }
-
-  if(guideExists > 0){
-    res.status(400);
-    res.setHeader('content-type', 'application/json');
-    res.send('{"status":"400","msg":"guide_already_exists"}');
-    return;
-  }
-
-  try{
-    console.log(req.body);
-
-    var guide = new Guide({
-      cube    :req.body.cube,
-      author  :req.body.author,
-      url     :req.body.url,
-      parts   :req.body.parts,
-      format  :req.body.format
-    });
-    guide.save(function(err){
-      if(!err){
-        console.log('Nueva guia guardada.');
-        res.setHeader('content-type', 'application/json');
-        res.status(200);
-        res.send(JSON.stringify(guide));
-      }else{
-        console.log('Error al guardar: '+err);
-        res.setHeader('content-type', 'application/json');
-        res.status(400);
-        res.send('{"status":"400", "msg":"bad_request"}');
-      }
-    });
-  }catch(err){
-    res.status(500);
-    res.setHeader('content-type', 'application/json');
-    res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
 

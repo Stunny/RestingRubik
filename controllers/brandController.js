@@ -58,47 +58,45 @@ module.exports.addBrand = function(req, res){
         web		  : req.body.web
         },
         function(err, c){
-            brandExists = c;
+            if(c > 0){
+              req.status(200);
+              res.setHeader('content-type', 'application/json');
+              res.send('{"status":"400","msg":"brand_already_exists"}');
+              return;
+            }
+            try{
+              console.log(req.body);
+
+              var brand = new Brand({
+                nombre 	: req.body.nombre,
+                pais 	  : req.body.pais,
+                web		  : req.body.web
+              });
+
+              brand.save(function(err){
+                if(!err){
+                  console.log('Nueva marca guardado.');
+                  res.setHeader('content-type', 'application/json');
+                  res.send(JSON.stringify(brand));
+                  res.status(200);
+                }else{
+                  console.log('Error al guardar: '+err);
+                  res.setHeader('content-type', 'application/json');
+                  res.send('{"status":"400","msg":"bad_request"}');
+                  res.status(400);
+                }
+              });
+            }catch(err){
+              res.status(500);
+              res.setHeader('content-type', 'application/json');
+              res.send('{"status":"500","msg":"internal_server_error"}');
+            }
         }
       );
   }catch(err){
      console.log(err);
   }
 
-  if(brandExists > 0){
-    res.status(400);
-    res.setHeader('content-type', 'application/json');
-    res.send('{"status":"400","msg":"brand_already_exists"}');
-    return;
-  }
-
-  try{
-    console.log(req.body);
-
-    var brand = new Brand({
-      nombre 	: req.body.nombre,
-      pais 	  : req.body.pais,
-      web		  : req.body.web
-    });
-
-    brand.save(function(err){
-      if(!err){
-        console.log('Nueva marca guardado.');
-        res.setHeader('content-type', 'application/json');
-        res.send(JSON.stringify(brand));
-        res.status(200);
-      }else{
-        console.log('Error al guardar: '+err);
-        res.setHeader('content-type', 'application/json');
-        res.send('{"status":"400","msg":"bad_request"}');
-        res.status(400);
-      }
-    });
-  }catch(err){
-    res.status(500);
-    res.setHeader('content-type', 'application/json');
-    res.send('{"status":"500","msg":"internal_server_error"}');
-  }
 };
 
 //PUT---ACTUALIZAR INFO DE LA MARCA

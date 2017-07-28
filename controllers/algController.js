@@ -59,45 +59,43 @@ module.exports.addAlgtm = function(req, res){
         kind 		      : req.body.kind
         },
         function(err, c){
-            algExists = c;
+            if(c > 0){
+              res.status(400);
+              res.setHeader('content-type', 'application/json');
+              res.send('{"status":"400","msg":"alg_already_exists"}');
+              return;
+            }
+            try{
+              var alg = new Algtm({
+                nombre       : req.body.nombre,
+                moves_number : req.body.moves_number,
+                moves        : req.body.moves,
+                applies_to   : req.body.applies_to,
+                kind         : req.body.kind
+              });
+
+              alg.save(function(err){
+                if(!err){
+                  console.log('Nuevo algoritmo guardado.');
+                  res.setHeader('content-type', 'application/json');
+                  res.send(JSON.stringify(alg));
+                  res.status(200);
+                }else{
+                  console.log('Erro al guardar: '+err);
+                  res.setHeader('content-type', 'application/json');
+                  res.send('{"status":"400","msg":"bad_request"}');
+                  res.status(400);
+                }
+              });
+            }catch(err){
+              res.status(500);
+              res.setHeader('content-type', 'application/json');
+              res.send('{"status":"500","msg":"internal_server_error"}');
+            }
         }
       );
   }catch(err){
      console.log(err);
-  }
-
-  if(algExists > 0){
-    res.status(400);
-    res.setHeader('content-type', 'application/json');
-    res.send('{"status":"400","msg":"alg_already_exists"}');
-    return;
-  }
-  try{
-    var alg = new Algtm({
-      nombre       : req.body.nombre,
-      moves_number : req.body.moves_number,
-      moves        : req.body.moves,
-      applies_to   : req.body.applies_to,
-      kind         : req.body.kind
-    });
-
-    alg.save(function(err){
-      if(!err){
-        console.log('Nuevo algoritmo guardado.');
-        res.setHeader('content-type', 'application/json');
-        res.send(JSON.stringify(alg));
-        res.status(200);
-      }else{
-        console.log('Erro al guardar: '+err);
-        res.setHeader('content-type', 'application/json');
-        res.send('{"status":"400","msg":"bad_request"}');
-        res.status(400);
-      }
-    });
-  }catch(err){
-    res.status(500);
-    res.setHeader('content-type', 'application/json');
-    res.send('{"status":"500","msg":"internal_server_error"}');
   }
 };
 
