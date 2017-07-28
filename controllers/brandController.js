@@ -58,8 +58,12 @@ module.exports.addBrand = function(req, res){
         web		  : req.body.web
         },
         function(err, c){
+            if(err){
+              console.log(err.msg);
+              return;
+            }
             if(c > 0){
-              req.status(200);
+              res.status(200);
               res.setHeader('content-type', 'application/json');
               res.send('{"status":"400","msg":"brand_already_exists"}');
               return;
