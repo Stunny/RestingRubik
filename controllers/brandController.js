@@ -85,6 +85,15 @@ module.exports.updateBrand = function(req,res){
     console.log(req.body);
 
     Brand.findById(req.params.id, function(err, brand){
+
+      if(err){
+        console.log('Error al actualizar: '+err);
+        res.setHeader('content-type', 'application/json');
+        res.send('{"status":"404", "msg":"brand_not_found"}');
+        res.status(404);
+        return;
+      }
+
       brand.nombre 	= req.body.nombre;
       brand.pais 		= req.body.pais;
       brand.web 		= req.body.web;

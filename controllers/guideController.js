@@ -84,6 +84,15 @@ module.exports.updateGuide = function(req,res){
     console.log(req.body);
 
     Guide.findById(req.params.id, function(err,guide){
+
+      if(err){
+        console.log('Error al actualizar: '+err);
+        res.setHeader('content-type', 'application/json');
+        res.send('{"status":"404", "msg":"guide_not_found"}');
+        res.status(404);
+        return;
+      }
+
       guide.cube      = req.body.cube;
       guide.author    = req.body.author;
       guide.url       = req.body.url;

@@ -83,6 +83,15 @@ module.exports.updateAlgtm = function(req, res){
   try{
     console.log(req.body);
     Algtm.findById(req.params.id, function(err, alg){
+
+      if(err){
+        console.log('Error al actualizar: '+err);
+        res.setHeader('content-type', 'application/json');
+        res.send('{"status":"404", "msg":"alg_not_found"}');
+        res.status(404);
+        return;
+      }
+
       alg.nombre       = req.body.nombre;
       alg.moves_number = req.body.moves_number;
       alg.moves        = req.body.moves;
