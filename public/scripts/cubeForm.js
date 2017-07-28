@@ -36,6 +36,6 @@ $('#addcube').submit(function(event){
 
   // handle errors
   send.fail(function(jqxhr, textStatus, errorThrown) {
-    console.log(textStatus, errorThrown, errorThrown.msg)
+    console.log(textStatus, errorThrown, errorThrown.msg);
   });
 });

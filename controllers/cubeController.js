@@ -48,33 +48,54 @@
 	//POST---AÑADIR CUBO
 	module.exports.addCubo = function(req, res){
 		var Cube = require('../models/cube');
+		var Brand = require('../models/brand');
+		var brandExists = 0;
+
 		try{
-			console.log(req.body);
-
-			var cubo = new Cube({
-				nombre 	: req.body.nombre,
-				brand 	: req.body.brand,
-				capas		: req.body.capas,
-				kind 		: req.body.kind
-			});
-
-			cubo.save(function(err){
+			Brand.count({nombre: req.body.brand}, function(err, c) {
 				if(!err){
-					console.log('Nuevo cubo guardado.');
-					res.setHeader('content-type', 'application/json');
-					res.send(JSON.stringify(cubo));
-					res.status(200);
-				}else{
-					console.log('Error al guardar: '+err);
-					res.setHeader('content-type', 'application/json');
-					res.send('{"status":"400","msg":"bad_request"}');
-					res.status(400);
+					brandExists = c;
 				}
 			});
 		}catch(err){
+			res.status(404);
+			res.setHeader('content-type', 'application/json');
+	    res.send('{"status":"404","msg":"brand_not_found"}');
+		}
+
+		if(brandExists > 0){
+			try{
+				console.log(req.body);
+
+				var cubo = new Cube({
+					nombre 	: req.body.nombre,
+					brand 	: req.body.brand,
+					capas		: req.body.capas,
+					kind 		: req.body.kind
+				});
+
+				cubo.save(function(err){
+					if(!err){
+						console.log('Nuevo cubo guardado.');
+						res.setHeader('content-type', 'application/json');
+						res.send(JSON.stringify(cubo));
+						res.status(200);
+					}else{
+						console.log('Error al guardar: '+err);
+						res.setHeader('content-type', 'application/json');
+						res.send('{"status":"400","msg":"bad_request"}');
+						res.status(400);
+					}
+				});
+			}catch(err){
+				res.status(500);
+				res.setHeader('content-type', 'application/json');
+				res.send('{"status":"500","msg":"internal_server_error"}');
+			}
+		} else{
 			res.status(500);
 			res.setHeader('content-type', 'application/json');
-			res.send('{"status":"500","msg":"internal_server_error"}');
+			res.send('{"status":"404","msg":"brand_not_found"}');
 		}
 	};
 
@@ -85,6 +106,15 @@
 			console.log(req.body);
 
 			Cube.findById(req.params.id, function(err, cube){
+
+				if(err){
+					console.log('Error al actualizar: '+err);
+					res.setHeader('content-type', 'application/json');
+					res.send('{"status":"404", "msg":"cube_not_found"}');
+					res.status(404);
+					return;
+				}
+
 				cube.nombre 	= req.body.nombre;
 				cube.brand 		= req.body.brand;
 				cube.capas 		= req.body.capas;
